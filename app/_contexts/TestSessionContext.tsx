@@ -8,6 +8,8 @@ type ContextData = {
   contact: Contact;
   agreeToTerms: boolean;
   tickets: Ticket[];
+  selectedTicketType: TicketType;
+  setSelectedTicketType: (type: TicketType) => void;
 };
 
 export type Contact = {
@@ -51,6 +53,8 @@ export const TestSessionProvider = ({
   });
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [selectedTicketType, setSelectedTicketType] =
+    useState<TicketType>("adult");
 
   useEffect(() => {
     setMovie(getRandomMovie());
@@ -63,6 +67,8 @@ export const TestSessionProvider = ({
         contact,
         agreeToTerms,
         tickets,
+        selectedTicketType,
+        setSelectedTicketType,
       }}
     >
       {children}
