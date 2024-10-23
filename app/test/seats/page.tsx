@@ -24,7 +24,7 @@ export default function SeatsPage() {
   return (
     <div className="flex flex-col h-full">
       <MovieHeader />
-      <article className="flex flex-col h-full p-3 relative">
+      <article className="flex flex-col h-full p-3 pe-0 relative">
         <Popover>
           <PopoverTrigger className="absolute top-4 right-4 z-50 text-black/60">
             <BsQuestionCircle size={20} />
@@ -34,7 +34,7 @@ export default function SeatsPage() {
             zakoupit.
           </PopoverContent>
         </Popover>
-        <div className="flex gap-6">
+        <div className="flex">
           <div className="flex flex-col gap-0.5">
             <TicketTypeItem type="adult" />
             <TicketTypeItem
@@ -51,16 +51,18 @@ export default function SeatsPage() {
               info="Doprovod (jedna osoba) pro ZTP/P má vstupenku zdarma. Pro slevu ZTP nebo ZTP/P musíte předložit platný průkaz."
             />
           </div>
-          <div className="w-full relative">
-            <img
-              className="max-h-[236px] ml-6 drop-shadow-lg"
-              src="https://raw.githubusercontent.com/maros-o/cvut-fit-ni-nur-public-res/refs/heads/main/empty_palette.png"
-            />
-            <PaletteItem className="top-[50px] left-[70px]" type="adult" />
-            <PaletteItem className="top-[95px] left-[50px]" type="student" />
-            <PaletteItem className="top-[142px] left-[65px]" type="child" />
-            <PaletteItem className="top-[170px] left-[105px]" type="senior" />
-            <PaletteItem className="top-[160px] left-[155px]" type="ztp" />
+          <div className="flex justify-center items-center w-full">
+            <div className="flex relative">
+              <img
+                className="h-[236px] drop-shadow-lg"
+                src="https://raw.githubusercontent.com/maros-o/cvut-fit-ni-nur-public-res/refs/heads/main/empty_palette.png"
+              />
+              <PaletteItem className="top-[46px] left-[46px]" type="adult" />
+              <PaletteItem className="top-[90px] left-[22px]" type="student" />
+              <PaletteItem className="top-[136px] left-[36px]" type="child" />
+              <PaletteItem className="top-[170px] left-[76px]" type="senior" />
+              <PaletteItem className="top-[160px] left-[126px]" type="ztp" />
+            </div>
           </div>
         </div>
       </article>
