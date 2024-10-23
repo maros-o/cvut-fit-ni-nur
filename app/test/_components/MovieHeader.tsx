@@ -1,8 +1,13 @@
-import { Movie } from "@/app/_mock_data/movies";
+"use client";
 
-export const MovieHeader = ({ movie }: { movie: Movie }) => {
+import TestSessionContext from "@/app/_contexts/TestSessionContext";
+import { useContext } from "react";
+
+export const MovieHeader = () => {
+  const { movie } = useContext(TestSessionContext);
+
   return (
-    <header className="flex flex-col gap-4 p-4 bg-gray-100">
+    <header className="flex flex-col gap-2 p-4 bg-gray-100 ">
       <h1 className="text-2xl font-bold">{movie.title}</h1>
       <div className="flex justify-between w-full gap-2 items-center">
         <div className="flex-shrink-0 text-md">
