@@ -138,7 +138,7 @@ const PaletteItem = ({
         ticketTypeToBgColor[type]
       } absolute w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
         selectedTicketType === type
-          ? "outline outline-3 outline-gray-600 scale-105"
+          ? "outline outline-2 outline-gray-600 scale-105"
           : ""
       }`}
       onClick={() => setSelectedTicketType(type)}
