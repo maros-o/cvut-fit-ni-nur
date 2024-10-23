@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SettingsProvider } from "./_contexts/SettingsContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,9 +29,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-screen`}
       >
-        <main className="max-w-md w-full h-full outline outline-1 outline-gray-200 font-[family-name:var(--font-geist-sans)]">
-          {children}
-        </main>
+        <SettingsProvider>
+          <main className="max-w-md w-full h-full outline outline-1 outline-gray-200 font-[family-name:var(--font-geist-sans)]">
+            {children}
+          </main>
+        </SettingsProvider>
       </body>
     </html>
   );
