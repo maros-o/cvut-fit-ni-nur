@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-dvh`}
       >
         <SettingsProvider>
           <main className="max-w-md w-full h-full outline outline-1 outline-gray-200 font-[family-name:var(--font-geist-sans)]">
