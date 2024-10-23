@@ -84,7 +84,8 @@ const TicketTypeItem = ({
   type: TicketType;
   info?: string;
 }) => {
-  const { selectedTicketType } = useContext(TestSessionContext);
+  const { selectedTicketType, setSelectedTicketType } =
+    useContext(TestSessionContext);
 
   return (
     <Popover>
@@ -96,7 +97,8 @@ const TicketTypeItem = ({
         }`}
       >
         <div
-          className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm`}
+          className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm cursor-pointer`}
+          onClick={() => setSelectedTicketType(type)}
         />
         <div className="flex flex-col">
           <span className="text-sm font-[500] relative">
@@ -136,7 +138,7 @@ const PaletteItem = ({
         ticketTypeToBgColor[type]
       } absolute w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
         selectedTicketType === type
-          ? "outline outline-2 outline-gray-600 scale-105"
+          ? "outline outline-3 outline-gray-600 scale-105"
           : ""
       }`}
       onClick={() => setSelectedTicketType(type)}
