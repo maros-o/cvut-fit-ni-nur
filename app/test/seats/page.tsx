@@ -10,6 +10,13 @@ import {
   ticketTypeToLabel,
   ticketTypeToPrice,
 } from "@/app/_constats/ticket";
+import { IoMdInformationCircleOutline } from "react-icons/io";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function SeatsPage() {
   const { selectedTicketType } = useContext(TestSessionContext);
@@ -17,14 +24,14 @@ export default function SeatsPage() {
   return (
     <div className="flex flex-col h-full">
       <MovieHeader />
-      <article className="flex flex-col h-full p-4">
+      <article className="flex flex-col h-full p-3">
         <div className="flex gap-6">
           <ul className="flex flex-col gap-0.5">
             <TicketTypeItem type="adult" />
-            <TicketTypeItem type="student" />
-            <TicketTypeItem type="child" />
-            <TicketTypeItem type="senior" />
-            <TicketTypeItem type="ztp" />
+            <TicketTypeItem type="student" info={"Platný průkaz ISIC"} />
+            <TicketTypeItem type="child" info="Do 15 let" />
+            <TicketTypeItem type="senior" info="Od 65 let" />
+            <TicketTypeItem type="ztp" info="ZTP/P průkaz" />
           </ul>
           <div className="w-full bg-orange-200 relative rounded-lg">
             <PaletteItem className="top-[10px] left-[10px]" type="adult" />
@@ -46,23 +53,45 @@ export default function SeatsPage() {
   );
 }
 
-const TicketTypeItem = ({ type }: { type: TicketType }) => {
+const TicketTypeItem = ({
+  type,
+  info,
+}: {
+  type: TicketType;
+  info?: string;
+}) => {
   const { selectedTicketType } = useContext(TestSessionContext);
 
   return (
-    <div
-      className={`flex items-center gap-2 px-2 py-1 border rounded-sm ${
-        selectedTicketType === type ? "border-gray-500" : "border-transparent"
-      }`}
-    >
-      <div
-        className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm`}
-      />
-      <div className="flex flex-col">
-        <span className="text-sm font-[500]">{ticketTypeToLabel[type]}</span>
-        <span className="text-xs">{ticketTypeToPrice[type]},-</span>
-      </div>
-    </div>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger
+          className={`flex items-center gap-2 px-2 py-1 border rounded-sm pe-[18px] text-left ${
+            selectedTicketType === type
+              ? "border-gray-500"
+              : "border-transparent"
+          }`}
+        >
+          <div
+            className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm`}
+          />
+          <div className="flex flex-col">
+            <span className="text-sm font-[500] relative">
+              {ticketTypeToLabel[type]}
+              {info && (
+                <div className="absolute right-[-15px] top-0 text-black/80">
+                  <IoMdInformationCircleOutline size={14} />
+                </div>
+              )}
+            </span>{" "}
+            <span className="text-xs">{ticketTypeToPrice[type]},-</span>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{info}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
 

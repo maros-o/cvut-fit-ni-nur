@@ -2,7 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import {
+  IoMdArrowRoundBack,
+  IoMdArrowRoundForward,
+} from "react-icons/io";
 
 interface NavigationButtonProps {
   href: string;
@@ -19,7 +22,7 @@ const NavigationButton = ({
 }: NavigationButtonProps) => {
   return (
     <Button
-      className={`${className} w-[220px] h-[48px] rounded-xl drop-shadow ${
+      className={`${className} w-[220px] h-[46px] rounded-xl drop-shadow ${
         disabled ? "opacity-50 cursor-not-allowed " : ""
       }`}
       aria-disabled={disabled}
