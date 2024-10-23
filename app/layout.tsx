@@ -25,12 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="cs">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-dvh`}
       >
         <SettingsProvider>
-          <main className="max-w-md w-full h-full outline outline-1 outline-gray-200 font-[family-name:var(--font-geist-sans)]">
+          <main className="flex flex-col max-w-md w-full h-full outline outline-1 outline-gray-200 font-[family-name:var(--font-geist-sans)]">
             {children}
           </main>
         </SettingsProvider>

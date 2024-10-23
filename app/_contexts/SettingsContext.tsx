@@ -52,14 +52,14 @@ export const SettingsProvider = ({
     }
   }, []);
 
-  const contextData: ContextData = {
-    ...settingsState,
-    setSetting,
-    resetSettings,
-  };
-
   return (
-    <SettingsContext.Provider value={contextData}>
+    <SettingsContext.Provider
+      value={{
+        ...settingsState,
+        setSetting,
+        resetSettings,
+      }}
+    >
       {children}
     </SettingsContext.Provider>
   );
