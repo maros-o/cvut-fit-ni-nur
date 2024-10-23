@@ -8,7 +8,7 @@ export const MovieHeader = () => {
 
   return (
     <header className="flex flex-col py-2.5 px-3 gap-0.5 bg-gray-100 ">
-      <h1 className="text-2xl font-bold truncate">{movie.title}</h1>
+      <h1 className="text-xl font-bold truncate">{movie.title}</h1>
       <div className="flex justify-between w-full gap-2 items-center">
         <div className="flex-shrink-0 text-md">
           {movie.day} <span className="font-bold">{movie.datetime}</span>

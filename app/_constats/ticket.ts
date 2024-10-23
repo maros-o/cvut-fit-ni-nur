@@ -2,7 +2,7 @@ import { TicketType } from "../_contexts/TestSessionContext";
 
 export const ticketTypeToLabel: Record<TicketType, string> = {
   senior: "Senior",
-  adult: "Dospělý",
+  adult: "Základní",
   student: "Student",
   child: "Dítě",
   ztp: "ZTP",
