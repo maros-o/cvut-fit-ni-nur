@@ -26,8 +26,8 @@ export default function SeatsPage() {
       <MovieHeader />
       <article className="flex flex-col h-full p-3 relative">
         <Popover>
-          <PopoverTrigger className="absolute top-4 right-4 z-50">
-            <BsQuestionCircle size={16} />
+          <PopoverTrigger className="absolute top-4 right-4 z-50 text-black/60">
+            <BsQuestionCircle size={20} />
           </PopoverTrigger>
           <PopoverContent className="text-sm p-2  w-fit max-w-[300px]">
             Vyberte barvu na paletě a poté klikněte na sedadlo, které chcete
@@ -87,7 +87,7 @@ const TicketTypeItem = ({
   return (
     <Popover>
       <div
-        className={`flex items-center gap-2 px-2 py-1 rounded-sm pe-[18px] text-left ${
+        className={`flex items-center gap-2 px-2 py-1 rounded-sm pe-[20px] text-left ${
           selectedTicketType === type
             ? " outline outline-gray-500 outline-2"
             : ""
@@ -100,8 +100,8 @@ const TicketTypeItem = ({
           <span className="text-sm font-[500] relative">
             {ticketTypeToLabel[type]}
             {info && (
-              <PopoverTrigger className="absolute right-[-18px] top-0 text-black/80">
-                <IoMdInformationCircleOutline size={16} />
+              <PopoverTrigger className="absolute right-[-20px] top-0 text-black/60">
+                <IoMdInformationCircleOutline size={18} />
               </PopoverTrigger>
             )}
           </span>{" "}
@@ -132,10 +132,10 @@ const PaletteItem = ({
     <div
       className={`${className} ${
         ticketTypeToBgColor[type]
-      } absolute w-10 h-10 rounded-full drop-shadow cursor-pointer outline transition-transform duration-200 ${
+      } absolute w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
         selectedTicketType === type
-          ? "outline-gray-600 scale-105"
-          : "outline-transparent"
+          ? "outline outline-2 outline-gray-600 scale-105"
+          : ""
       }`}
       onClick={() => setSelectedTicketType(type)}
     >
