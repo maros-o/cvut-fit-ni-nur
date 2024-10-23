@@ -19,7 +19,7 @@ const NavigationButton = ({
 }: NavigationButtonProps) => {
   return (
     <Button
-      className={`${className} w-[180px] rounded-xl drop-shadow ${
+      className={`${className} w-[220px] h-[48px] rounded-xl drop-shadow ${
         disabled ? "opacity-50 cursor-not-allowed " : ""
       }`}
       aria-disabled={disabled}

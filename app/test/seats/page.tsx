@@ -35,8 +35,7 @@ export default function SeatsPage() {
           </div>
         </div>
       </article>
-      <HoldToDisplayText />
-      <nav className="flex justify-center items-center gap-4 p-4 w-full ">
+      <nav className="flex justify-center items-center gap-4 p-3 w-full ">
         <BackButton href="/" />
         <div className="flex justify-center items-center w-full">
           Výběr míst
@@ -78,45 +77,5 @@ const PaletteItem = ({
     <div
       className={`${className} absolute w-8 h-8 ${ticketTypeToBgColor[type]} rounded-full`}
     />
-  );
-};
-
-const HoldToDisplayText = () => {
-  const [isTextVisible, setIsTextVisible] = useState(false);
-
-  return (
-    <div
-      style={{
-        width: "200px",
-        height: "200px",
-        backgroundColor: "#007BFF",
-        color: "white",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "8px",
-        position: "relative",
-        touchAction: "manipulation",
-      }}
-      onTouchStart={() => setIsTextVisible(false)}
-      onTouchEnd={() => setIsTextVisible(true)}
-      onTouchCancel={() => setIsTextVisible(false)}
-    >
-      Hold Me
-      {isTextVisible && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            color: "white",
-            padding: "5px",
-            borderRadius: "4px",
-          }}
-        >
-          Hello! You are holding me.
-        </div>
-      )}
-    </div>
   );
 };

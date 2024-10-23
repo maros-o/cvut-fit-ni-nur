@@ -7,7 +7,7 @@ export const MovieHeader = () => {
   const { movie } = useContext(TestSessionContext);
 
   return (
-    <header className="flex flex-col gap-2 p-4 bg-gray-100 ">
+    <header className="flex flex-col py-2.5 px-3 gap-0.5 bg-gray-100 ">
       <h1 className="text-2xl font-bold">{movie.title}</h1>
       <div className="flex justify-between w-full gap-2 items-center">
         <div className="flex-shrink-0 text-md">
