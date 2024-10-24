@@ -21,9 +21,9 @@ export const SeatPicker = ({}: {}) => {
 
   return (
     <div className="w-full py-3 pe-3">
-      <div className="w-full p-2 ps-2 rounded-md bg-gray-100">
+      <div className="w-full p-2 ps-1 rounded-md bg-gray-100">
         <div
-          className={`flex justify-center my-4 pe-3`}
+          className={`flex justify-center mt-3 pe-3`}
           style={{ paddingLeft: SEAT_SIZE_PX }}
         >
           <div
