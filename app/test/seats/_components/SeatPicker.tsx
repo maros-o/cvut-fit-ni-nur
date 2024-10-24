@@ -20,21 +20,18 @@ export const SeatPicker = ({}: {}) => {
   };
 
   return (
-    <div className="w-full py-3 pe-3">
-      <div className="w-full p-2 ps-1 rounded-md bg-gray-100">
-        <div
-          className={`flex justify-center mt-3 pe-3`}
-          style={{ paddingLeft: SEAT_SIZE_PX }}
-        >
+    <div className="w-full mt-2 pe-3">
+      <div className="w-full rounded-md bg-gray-100 py-3">
+        <div className={`flex justify-center`}>
           <div
-            className={`w-full h-5 bg-gray-300 rounded-sm text-xs flex items-center justify-center`}
+            className={`h-5 w-[90%] bg-gray-300 rounded-sm text-xs flex items-center justify-center`}
           >
             Plátno
           </div>
         </div>
         <div className="flex flex-col items-start mt-4">
           <div
-            className={`grid  gap-1 mb-1`}
+            className={`grid gap-1 mb-1`}
             style={{
               gridTemplateColumns: `repeat(${SEAT_COLS + 1}, ${SEAT_SIZE_PX})`,
             }}
