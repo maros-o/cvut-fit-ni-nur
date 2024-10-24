@@ -28,11 +28,14 @@ export const SettingsProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [settingsState, setSettingsState] = useState<Settings>(
-    localStorage.getItem(SETTINGS_KEY)
-      ? JSON.parse(localStorage.getItem(SETTINGS_KEY) as string)
-      : defaultSettings
-  );
+  const [settingsState, setSettingsState] = useState<Settings>(() => {
+    const storedSettings = localStorage.getItem(SETTINGS_KEY);
+    try {
+      return JSON.parse(storedSettings as string);
+    } catch (error) {
+      return defaultSettings;
+    }
+  });
 
   const setSetting: ContextData["setSetting"] = useCallback(
     (field, value) =>
