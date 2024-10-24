@@ -55,6 +55,7 @@ export default function SeatsPage() {
             <div className="flex relative">
               <img
                 className="h-[236px] drop-shadow-lg"
+                alt="palette"
                 src="https://raw.githubusercontent.com/maros-o/cvut-fit-ni-nur-public-res/refs/heads/main/empty_palette.png"
               />
               <PaletteItem className="top-[46px] left-[46px]" type="adult" />
@@ -77,6 +78,7 @@ export default function SeatsPage() {
               minScale={initialScale}
               maxScale={1.2}
               centerOnInit
+              doubleClick={{ disabled: true }}
             >
               <TransformComponent
                 wrapperStyle={{
