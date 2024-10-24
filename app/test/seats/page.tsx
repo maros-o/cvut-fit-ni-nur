@@ -37,7 +37,7 @@ export default function SeatsPage() {
             zakoupit.
           </PopoverContent>
         </Popover>
-        <div className="flex mb-0.5">
+        <div className="flex mb-1">
           <div className="flex flex-col gap-0.5 pt-1.5">
             <TicketTypeItem type="adult" />
             <TicketTypeItem
@@ -54,7 +54,7 @@ export default function SeatsPage() {
               info="Doprovod (jedna osoba) pro ZTP/P má vstupenku zdarma. Pro slevu ZTP nebo ZTP/P musíte předložit platný průkaz."
             />
           </div>
-          <div className="flex justify-center items-center w-full">
+          <div className="flex justify-center pt-0.5 items-center w-full">
             <div className="flex relative">
               <img
                 className="h-[236px] drop-shadow-lg"
