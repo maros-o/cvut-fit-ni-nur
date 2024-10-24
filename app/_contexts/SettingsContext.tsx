@@ -6,6 +6,7 @@ type Settings = {
   showEraser: boolean;
   maxSessionTime: number;
   sessionTimeWarningLimit: number;
+  numberOfReservedSeatsOnStart: number;
 };
 
 type ContextData = {
@@ -19,6 +20,7 @@ const defaultSettings: Settings = {
   showEraser: true,
   maxSessionTime: 20,
   sessionTimeWarningLimit: 5,
+  numberOfReservedSeatsOnStart: 0,
 };
 
 export const SettingsProvider = ({

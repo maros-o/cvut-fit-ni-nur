@@ -15,6 +15,7 @@ export default function SettingsPage() {
     showEraser,
     setSetting,
     resetSettings,
+    numberOfReservedSeatsOnStart,
   } = useContext(SettingsContext);
 
   return (
@@ -28,10 +29,9 @@ export default function SettingsPage() {
             type="number"
             className="w-20"
             value={maxSessionTime}
-            onChange={(e) => {
-              setSetting("maxSessionTime", Number(e.target.value));
-            }}
-            checked={showEraser}
+            onChange={(e) =>
+              setSetting("maxSessionTime", Number(e.target.value))
+            }
           />
           <Label>
             Maximální délka objednávky{" "}
@@ -43,15 +43,25 @@ export default function SettingsPage() {
             type="number"
             className="w-20"
             value={sessionTimeWarningLimit}
-            onChange={(e) => {
-              setSetting("sessionTimeWarningLimit", Number(e.target.value));
-            }}
-            checked={showEraser}
+            onChange={(e) =>
+              setSetting("sessionTimeWarningLimit", Number(e.target.value))
+            }
           />
           <Label>
             Časový limit pro upozornění na dokončení objednávky{" "}
             <span className="text-black/60">(min)</span>
           </Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Input
+            type="number"
+            className="w-20"
+            value={numberOfReservedSeatsOnStart}
+            onChange={(e) =>
+              setSetting("numberOfReservedSeatsOnStart", Number(e.target.value))
+            }
+          />
+          <Label>Počet rezervovaných sedadel na začátku</Label>
         </div>
         <div className="flex items-center space-x-2 ps-9">
           <Switch

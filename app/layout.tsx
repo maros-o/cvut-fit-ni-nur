@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-dvh bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-dvh bg-[#201c1c]`}
       >
         <SettingsProvider>
           <main className="flex flex-col max-w-md w-full h-full  font-[family-name:var(--font-geist-sans)] bg-background">

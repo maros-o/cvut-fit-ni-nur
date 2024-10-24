@@ -1,7 +1,15 @@
 "use client";
 
-import { useState, createContext, useEffect, useCallback } from "react";
+import {
+  useState,
+  createContext,
+  useEffect,
+  useCallback,
+  useContext,
+} from "react";
 import { getRandomMovie, Movie } from "../_mock_data/movies";
+import { SEAT_COLS, SEAT_ROWS } from "../_constats/seats";
+import SettingsContext from "./SettingsContext";
 
 type ContextData = {
   movie: Movie;
@@ -10,6 +18,8 @@ type ContextData = {
   tickets: Ticket[];
   selectedTicketType: TicketType;
   setSelectedTicketType: (type: TicketType) => void;
+  selectedSeats: SelectSeat[][];
+  updateSeat: (row: number, col: number, type: SelectSeatType) => void;
 };
 
 export type Contact = {
@@ -27,9 +37,27 @@ export type Seat = {
   col: number;
 };
 
+export type SelectSeatType = "reserved" | "empty" | TicketType;
+
+export type SelectSeat = Seat & {
+  type: SelectSeatType;
+};
+
 export type Ticket = {
   seat: Seat;
   type: TicketType;
+};
+
+const reserveSeats = (numberOfSeats: number, selectedSeats: SelectSeat[][]) => {
+  for (let i = 0; i < numberOfSeats; i++) {
+    const row = Math.floor(Math.random() * SEAT_ROWS);
+    const col = Math.floor(Math.random() * SEAT_COLS);
+    if (selectedSeats[row][col].type === "empty") {
+      selectedSeats[row][col].type = "reserved";
+    } else {
+      i--;
+    }
+  }
 };
 
 export const TestSessionProvider = ({
@@ -55,10 +83,37 @@ export const TestSessionProvider = ({
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTicketType, setSelectedTicketType] =
     useState<TicketType>("adult");
+  const [selectedSeats, setSelectedSeats] = useState<SelectSeat[][]>([]);
+
+  const { numberOfReservedSeatsOnStart } = useContext(SettingsContext);
 
   useEffect(() => {
     setMovie(getRandomMovie());
+    const newSeats: SelectSeat[][] = Array.from({ length: SEAT_ROWS }).map(
+      (_, row) =>
+        Array.from({ length: SEAT_COLS }).map((_, col) => ({
+          row,
+          col,
+          type: "empty",
+        }))
+    );
+    reserveSeats(numberOfReservedSeatsOnStart, newSeats);
+    setSelectedSeats(newSeats);
   }, []);
+
+  const updateSeat = useCallback(
+    (row: number, col: number, type: SelectSeatType) =>
+      setSelectedSeats((prev) =>
+        prev.map((prevRow) =>
+          prevRow.map((prevCol) =>
+            prevCol.row === row && prevCol.col === col
+              ? { row, col, type }
+              : prevCol
+          )
+        )
+      ),
+    []
+  );
 
   return (
     <TestSessionContext.Provider
@@ -69,6 +124,8 @@ export const TestSessionProvider = ({
         tickets,
         selectedTicketType,
         setSelectedTicketType,
+        selectedSeats,
+        updateSeat,
       }}
     >
       {children}
