@@ -20,6 +20,7 @@ type ContextData = {
   setSelectedTicketType: (type: TicketType) => void;
   selectedSeats: SelectSeat[][];
   updateSeat: (row: number, col: number, type: SelectSeatType) => void;
+  setAgreeToTerms: (value: boolean) => void;
 };
 
 export type Contact = {
@@ -32,19 +33,18 @@ export type Contact = {
 
 export type TicketType = "senior" | "adult" | "student" | "child" | "ztp";
 
-export type Seat = {
+export type SelectSeatType = "reserved" | "empty" | TicketType;
+
+type Seat = {
   row: number;
   col: number;
 };
-
-export type SelectSeatType = "reserved" | "empty" | TicketType;
 
 export type SelectSeat = Seat & {
   type: SelectSeatType;
 };
 
-export type Ticket = {
-  seat: Seat;
+export type Ticket = Seat & {
   type: TicketType;
 };
 
@@ -104,6 +104,18 @@ export const TestSessionProvider = ({
     setSelectedSeats(newSeats);
   }, [numberOfReservedSeatsOnStart]);
 
+  useEffect(() => {
+    setTickets(
+      selectedSeats
+        .flat()
+        .filter((seat) => seat.type !== "empty" && seat.type !== "reserved")
+        .map((seat) => ({
+          ...seat,
+          type: seat.type as TicketType,
+        }))
+    );
+  }, [selectedSeats]);
+
   const updateSeat = useCallback(
     (row: number, col: number, type: SelectSeatType) =>
       setSelectedSeats((prev) =>
@@ -129,6 +141,7 @@ export const TestSessionProvider = ({
         setSelectedTicketType,
         selectedSeats,
         updateSeat,
+        setAgreeToTerms,
       }}
     >
       {children}

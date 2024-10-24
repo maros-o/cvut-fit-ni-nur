@@ -8,9 +8,9 @@ import TestSessionContext, {
 } from "@/app/_contexts/TestSessionContext";
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
-} from "@radix-ui/react-popover";
+  PopoverContent,
+} from "@/components/ui/popover";
 import { useContext } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 
@@ -49,12 +49,9 @@ export const TicketTypeItem = ({
           <span className="text-xs">{ticketTypeToPrice[type]},-</span>
         </div>
       </div>
-      {info && (
-        <PopoverContent className="text-sm p-2 w-fit max-w-[300px] z-10">
-          <span className="font-semibold">{ticketTypeToLabel[type]}</span>:{" "}
-          {info}
-        </PopoverContent>
-      )}
+      <PopoverContent className="text-sm p-2 w-fit max-w-[300px]">
+        <span className="font-semibold">{ticketTypeToLabel[type]}</span>: {info}
+      </PopoverContent>
     </Popover>
   );
 };

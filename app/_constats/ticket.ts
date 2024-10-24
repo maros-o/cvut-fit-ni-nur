@@ -23,3 +23,11 @@ export const ticketTypeToBgColor: Record<TicketType, string> = {
   child: "bg-yellow-400",
   ztp: "bg-purple-400",
 };
+
+export const ticketTypeToTextColor: Record<TicketType, string> = {
+  senior: "text-red-500",
+  adult: "text-green-500",
+  student: "text-blue-500",
+  child: "text-yellow-500",
+  ztp: "text-purple-500",
+};

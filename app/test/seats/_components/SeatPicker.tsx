@@ -65,7 +65,7 @@ export const SeatPicker = ({}: {}) => {
                   return (
                     <div
                       key={`${rowIdx}-${seat.col}`}
-                      className={`select-none outline outline-1 outline-gray-300 rounded-sm flex items-center justify-center bg-transparent relative`}
+                      className={`select-none outline outline-1 outline-gray-300 rounded-sm flex items-center justify-center bg-white relative`}
                       style={{ width: SEAT_SIZE_PX, height: SEAT_SIZE_PX }}
                     >
                       <div className="absolute inset-0 flex items-center justify-center select-none">

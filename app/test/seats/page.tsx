@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { MovieHeader } from "../_components/MovieHeader";
 import { NextButton, BackButton } from "../_components/Navigation";
 import { BsQuestionCircle } from "react-icons/bs";
@@ -13,6 +12,7 @@ import { PaletteItem } from "./_components/PaletteItem";
 import { TicketTypeItem } from "./_components/TicketTypeItem";
 import { SeatPicker } from "./_components/SeatPicker";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { TicketsSummary } from "./_components/TicketsSummary";
 
 export default function SeatsPage() {
   if (typeof window === "undefined") return null;
@@ -90,6 +90,7 @@ export default function SeatsPage() {
             </TransformWrapper>
           </div>
         </div>
+        <TicketsSummary />
       </article>
       <nav className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
         <BackButton href="/" />
