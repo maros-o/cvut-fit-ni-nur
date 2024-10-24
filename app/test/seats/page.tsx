@@ -15,16 +15,9 @@ import { SeatPicker } from "./_components/SeatPicker";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function SeatsPage() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
+  if (typeof window === "undefined") {
     return null;
   }
-
   const initialScale = Math.min(window.innerWidth / 424, 1) * 0.9;
   const wrapperHeight = Math.min(window.innerWidth / 424, 1) * 396 + "px";
 

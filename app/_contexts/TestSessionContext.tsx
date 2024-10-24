@@ -89,6 +89,9 @@ export const TestSessionProvider = ({
 
   useEffect(() => {
     setMovie(getRandomMovie());
+  }, []);
+
+  useEffect(() => {
     const newSeats: SelectSeat[][] = Array.from({ length: SEAT_ROWS }).map(
       (_, row) =>
         Array.from({ length: SEAT_COLS }).map((_, col) => ({
@@ -97,10 +100,9 @@ export const TestSessionProvider = ({
           type: "empty",
         }))
     );
-    console.log("numberOfReservedSeatsOnStart", numberOfReservedSeatsOnStart);
     reserveSeats(numberOfReservedSeatsOnStart, newSeats);
     setSelectedSeats(newSeats);
-  }, []);
+  }, [numberOfReservedSeatsOnStart]);
 
   const updateSeat = useCallback(
     (row: number, col: number, type: SelectSeatType) =>
