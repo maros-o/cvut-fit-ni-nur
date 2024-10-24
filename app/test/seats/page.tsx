@@ -17,6 +17,10 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 export default function SeatsPage() {
   const {} = useContext(TestSessionContext);
 
+  if (typeof window === "undefined") {
+    return null; // fuck server side
+  }
+
   return (
     <div className="flex flex-col h-full">
       <MovieHeader />
