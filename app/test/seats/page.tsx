@@ -13,8 +13,12 @@ import { TicketTypeItem } from "./_components/TicketTypeItem";
 import { SeatPicker } from "./_components/SeatPicker";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { TicketsSummary } from "./_components/TicketsSummary";
+import { useContext } from "react";
+import TestSessionContext from "@/app/_contexts/TestSessionContext";
 
 export default function SeatsPage() {
+  const { tickets } = useContext(TestSessionContext);
+
   if (typeof window === "undefined") return null;
 
   const initialScale = Math.min(window.innerWidth / 424, 1) * 0.9;
@@ -97,7 +101,11 @@ export default function SeatsPage() {
         <div className="flex justify-center items-center w-full">
           Výběr míst
         </div>
-        <NextButton href="./contact" disabled />
+        <NextButton
+          href="./contact"
+          disabledInfo={"Nejprve vyberte sedadlo"}
+          disabled={tickets.length === 0}
+        />
       </nav>
     </div>
   );

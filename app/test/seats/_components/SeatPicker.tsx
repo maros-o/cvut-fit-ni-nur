@@ -8,17 +8,29 @@ import {
   SEAT_SIZE_PX,
   seatTypeToBgColor,
 } from "@/app/_constats/seats";
-import { ticketTypeToIcon } from "@/app/_constats/ticket";
+import { MAX_TICKETS, ticketTypeToIcon } from "@/app/_constats/ticket";
+import { useToast } from "@/hooks/use-toast";
 
 export const SeatPicker = ({}: {}) => {
-  const { selectedTicketType, updateSeat, selectedSeats } =
+  const { selectedTicketType, updateSeat, selectedSeats, tickets } =
     useContext(TestSessionContext);
+  const { toast } = useToast();
 
   const toggleSeatSelection = (seat: SelectSeat) => {
     if (seat.type === "reserved") return;
-    const newType =
-      seat.type === selectedTicketType ? "empty" : selectedTicketType;
-    updateSeat(seat.row, seat.col, newType);
+    if (seat.type === "empty" && tickets.length === MAX_TICKETS) {
+      toast({
+        title: "Nelze vybrat",
+        description: `Maximální počet vstupenek je ${MAX_TICKETS}`,
+        duration: 5000,
+      });
+      return;
+    }
+    updateSeat(
+      seat.row,
+      seat.col,
+      seat.type === selectedTicketType ? "empty" : selectedTicketType
+    );
   };
 
   return (
@@ -80,7 +92,6 @@ export const SeatPicker = ({}: {}) => {
                     </div>
                   );
                 }
-
                 return (
                   <div
                     key={`${rowIdx}-${seat.col}`}

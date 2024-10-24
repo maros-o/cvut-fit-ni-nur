@@ -3,51 +3,65 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 
 const NavigationButton = ({
   href,
   disabled,
   icon,
   className,
+  disabledInfo,
 }: {
   href: string;
   disabled?: boolean;
+  disabledInfo?: string;
   icon: React.ReactNode;
   className?: string;
-}) => (
-  <Button
-    className={`${className} w-[220px] h-[46px] rounded-xl drop-shadow ${
-      disabled ? "opacity-50 cursor-not-allowed " : ""
-    }`}
-    aria-disabled={disabled}
-    disabled={disabled}
-    onClick={(e) => {
-      if (disabled) {
-        e.preventDefault();
-      }
-    }}
-    asChild
-  >
-    {!disabled ? (
-      <Link href={href} shallow={true}>
+}) => {
+  if (!disabled) {
+    return (
+      <Button
+        className={`${className} p-0 m-0 w-[220px] h-[46px] rounded-xl drop-shadow`}
+        aria-disabled={disabled}
+        disabled={disabled}
+        asChild
+      >
+        <Link href={href} shallow={true}>
+          {icon}
+        </Link>
+      </Button>
+    );
+  }
+
+  return (
+    <Popover>
+      <PopoverTrigger
+        className={`${className} flex justify-center items-center text-white w-[220px] h-[46px] rounded-xl drop-shadow opacity-50 cursor-not-allowed`}
+      >
         {icon}
-      </Link>
-    ) : (
-      <span>{icon}</span>
-    )}
-  </Button>
-);
+      </PopoverTrigger>
+      <PopoverContent>{disabledInfo}</PopoverContent>
+    </Popover>
+  );
+};
 
 export const BackButton = ({
   href,
   disabled,
+  disabledInfo,
 }: {
   href: string;
   disabled?: boolean;
+  disabledInfo?: string;
 }) => (
   <NavigationButton
     href={href}
     disabled={disabled}
+    disabledInfo={disabledInfo}
     icon={<IoMdArrowRoundBack />}
     className="bg-red-400 hover:bg-red-500"
   />
@@ -56,13 +70,16 @@ export const BackButton = ({
 export const NextButton = ({
   href,
   disabled,
+  disabledInfo,
 }: {
   href: string;
   disabled?: boolean;
+  disabledInfo?: string;
 }) => (
   <NavigationButton
     href={href}
     disabled={disabled}
+    disabledInfo={disabledInfo}
     icon={<IoMdArrowRoundForward />}
     className="bg-green-400 hover:bg-green-500"
   />

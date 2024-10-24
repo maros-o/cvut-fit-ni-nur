@@ -5,6 +5,8 @@ import { PiStudent } from "react-icons/pi";
 import { MdAccessible } from "react-icons/md";
 import { MdDirectionsWalk } from "react-icons/md";
 
+export const MAX_TICKETS = 10;
+
 export const ticketTypeToLabel: Record<TicketType, string> = {
   senior: "Senior",
   adult: "Základní",
