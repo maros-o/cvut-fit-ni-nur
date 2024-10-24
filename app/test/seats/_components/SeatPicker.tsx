@@ -28,9 +28,9 @@ export const SeatPicker = ({}: {}) => {
           Plátno
         </div>
       </div>
-      <div className="flex flex-col items-start mt-4">
+      <div className="flex flex-col items-start">
         <div
-          className={`grid gap-1 mb-1`}
+          className={`grid gap-1 mt-0.5`}
           style={{
             gridTemplateColumns: `repeat(${SEAT_COLS + 1}, ${SEAT_SIZE_PX})`,
           }}

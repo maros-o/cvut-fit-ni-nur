@@ -15,7 +15,7 @@ export const TicketsSummary = ({}: {}) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="pe-3 w-full"
+      className="pe-3 w-full mb-2"
     >
       <motion.div
         layout="position"

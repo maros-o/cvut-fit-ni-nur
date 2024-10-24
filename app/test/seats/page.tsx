@@ -18,14 +18,14 @@ export default function SeatsPage() {
   if (typeof window === "undefined") return null;
 
   const initialScale = Math.min(window.innerWidth / 424, 1) * 0.9;
-  const wrapperHeight = Math.min(window.innerWidth / 424, 1) * 396 + "px";
+  const wrapperHeight = Math.min(window.innerWidth / 424, 1) * 344 + "px";
 
   return (
     <div className="flex flex-col h-full">
       <MovieHeader />
-      <article className="flex flex-col h-full p-3 pe-0 relative">
+      <article className="flex flex-col h-full p-3 pt-1 pe-0 relative">
         <Popover>
-          <PopoverTrigger className="absolute top-4 right-4 z-10 text-black/60">
+          <PopoverTrigger className="absolute top-3 right-3 z-10 text-black/60">
             <BsQuestionCircle size={20} />
           </PopoverTrigger>
           <PopoverContent className="text-sm p-2 w-fit max-w-[300px] z-10">
@@ -33,8 +33,8 @@ export default function SeatsPage() {
             zakoupit.
           </PopoverContent>
         </Popover>
-        <div className="flex">
-          <div className="flex flex-col gap-0.5">
+        <div className="flex mb-0.5">
+          <div className="flex flex-col gap-0.5 pt-1.5">
             <TicketTypeItem type="adult" />
             <TicketTypeItem
               type="student"

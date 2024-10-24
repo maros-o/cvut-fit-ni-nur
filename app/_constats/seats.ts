@@ -1,6 +1,6 @@
 import { SelectSeatType } from "../_contexts/TestSessionContext";
 
-export const SEAT_ROWS = 9;
+export const SEAT_ROWS = 8;
 export const SEAT_COLS = 10;
 export const SEAT_SIZE = 8;
 export const SEAT_SIZE_PX = 4 * SEAT_SIZE + "px";
