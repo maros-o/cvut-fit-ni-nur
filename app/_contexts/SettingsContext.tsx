@@ -29,9 +29,8 @@ export const SettingsProvider = ({
   children: React.ReactNode;
 }) => {
   const [settingsState, setSettingsState] = useState<Settings>(() => {
-    const storedSettings = localStorage.getItem(SETTINGS_KEY);
     try {
-      return JSON.parse(storedSettings as string);
+      return JSON.parse(localStorage.getItem(SETTINGS_KEY) as string);
     } catch (error) {
       return defaultSettings;
     }
