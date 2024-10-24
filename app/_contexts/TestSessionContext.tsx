@@ -97,6 +97,7 @@ export const TestSessionProvider = ({
           type: "empty",
         }))
     );
+    console.log("numberOfReservedSeatsOnStart", numberOfReservedSeatsOnStart);
     reserveSeats(numberOfReservedSeatsOnStart, newSeats);
     setSelectedSeats(newSeats);
   }, []);

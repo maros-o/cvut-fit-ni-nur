@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center bg-[#201c1c]`}
       >
         <SettingsProvider>
-          <main className="flex flex-col max-w-md w-full min-h-dvh font-[family-name:var(--font-geist-sans)] bg-background overflow-auto">
+          <main className="flex flex-col max-w-md w-full min-h-dvh font-[family-name:var(--font-geist-sans)] bg-background">
             {children}
           </main>
         </SettingsProvider>

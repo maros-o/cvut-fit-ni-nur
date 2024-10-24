@@ -21,7 +21,7 @@ export default function SeatsPage() {
       <MovieHeader />
       <article className="flex flex-col h-full p-3 pe-0 relative">
         <Popover>
-          <PopoverTrigger className="absolute top-4 right-4 z-50 text-black/60">
+          <PopoverTrigger className="absolute top-4 right-4 z-10 text-black/60">
             <BsQuestionCircle size={20} />
           </PopoverTrigger>
           <PopoverContent className="text-sm p-2  w-fit max-w-[300px]">
@@ -62,7 +62,7 @@ export default function SeatsPage() {
         </div>
         <SeatPicker />
       </article>
-      <nav className="flex justify-center items-center gap-4 p-3 w-full ">
+      <nav className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
         <BackButton href="/" />
         <div className="flex justify-center items-center w-full">
           Výběr míst
