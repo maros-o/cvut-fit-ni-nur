@@ -1,4 +1,9 @@
 import { TicketType } from "../_contexts/TestSessionContext";
+import { MdElderly } from "react-icons/md";
+import { FaChild } from "react-icons/fa6";
+import { PiStudent } from "react-icons/pi";
+import { MdAccessible } from "react-icons/md";
+import { MdDirectionsWalk } from "react-icons/md";
 
 export const ticketTypeToLabel: Record<TicketType, string> = {
   senior: "Senior",
@@ -6,6 +11,14 @@ export const ticketTypeToLabel: Record<TicketType, string> = {
   student: "Student",
   child: "Dítě",
   ztp: "ZTP",
+};
+
+export const ticketTypeToIcon: Record<TicketType, JSX.Element> = {
+  senior: <MdElderly size={22} />,
+  adult: <MdDirectionsWalk size={22} />,
+  student: <PiStudent size={22} />,
+  child: <FaChild size={18} />,
+  ztp: <MdAccessible size={22} />,
 };
 
 export const ticketTypeToPrice: Record<TicketType, number> = {

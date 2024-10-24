@@ -1,5 +1,6 @@
 import {
   ticketTypeToBgColor,
+  ticketTypeToIcon,
   ticketTypeToLabel,
   ticketTypeToPrice,
 } from "@/app/_constats/ticket";
@@ -34,9 +35,11 @@ export const TicketTypeItem = ({
         }`}
       >
         <div
-          className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm cursor-pointer`}
+          className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm cursor-pointer flex items-center justify-center`}
           onClick={() => setSelectedTicketType(type)}
-        />
+        >
+          {ticketTypeToIcon[type]}
+        </div>
         <div className="flex flex-col">
           <span className="text-sm font-[500] relative">
             {ticketTypeToLabel[type]}

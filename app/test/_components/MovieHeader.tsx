@@ -13,7 +13,7 @@ export const MovieHeader = () => {
         <div className="flex-shrink-0 text-md">
           {movie.day} <span className="font-bold">{movie.datetime}</span>
         </div>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-1.5 flex-wrap">
           {movie.tags.map((tag) => (
             <span
               key={tag}

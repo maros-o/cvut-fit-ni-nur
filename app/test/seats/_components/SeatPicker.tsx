@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import TestSessionContext, {
   SelectSeat,
+  TicketType,
 } from "@/app/_contexts/TestSessionContext";
 import {
   SEAT_COLS,
   SEAT_SIZE_PX,
   seatTypeToBgColor,
 } from "@/app/_constats/seats";
+import { ticketTypeToIcon } from "@/app/_constats/ticket";
 
 export const SeatPicker = ({}: {}) => {
   const { selectedTicketType, updateSeat, selectedSeats } =
@@ -65,7 +67,9 @@ export const SeatPicker = ({}: {}) => {
                   return (
                     <div
                       key={`${rowIdx}-${seat.col}`}
-                      className={`select-none outline outline-1 outline-gray-300 rounded-sm flex items-center justify-center bg-white relative`}
+                      className={`select-none drop-shadow rounded-sm flex items-center justify-center bg-white relative ${
+                        seatTypeToBgColor[seat.type]
+                      }`}
                       style={{ width: SEAT_SIZE_PX, height: SEAT_SIZE_PX }}
                     >
                       <div className="absolute inset-0 flex items-center justify-center select-none">
@@ -81,11 +85,13 @@ export const SeatPicker = ({}: {}) => {
                   <div
                     key={`${rowIdx}-${seat.col}`}
                     onClick={() => toggleSeatSelection(seat)}
-                    className={`rounded-sm flex items-center justify-center cursor-pointer ${
+                    className={`rounded-sm flex items-center justify-center cursor-pointer drop-shadow text-black/80 ${
                       seatTypeToBgColor[seat.type]
                     }`}
                     style={{ width: SEAT_SIZE_PX, height: SEAT_SIZE_PX }}
-                  ></div>
+                  >
+                    {ticketTypeToIcon[seat.type as TicketType]}
+                  </div>
                 );
               })}
             </div>
