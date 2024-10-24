@@ -12,6 +12,7 @@ import {
 import { PaletteItem } from "./_components/PaletteItem";
 import { TicketTypeItem } from "./_components/TicketTypeItem";
 import { SeatPicker } from "./_components/SeatPicker";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function SeatsPage() {
   const {} = useContext(TestSessionContext);
@@ -60,7 +61,29 @@ export default function SeatsPage() {
             </div>
           </div>
         </div>
-        <SeatPicker />
+        <div className="pe-3">
+          <div
+            className="w-full border rounded-md"
+            style={{
+              height: Math.min(window.innerWidth / 424, 1) * 396 + "px",
+            }}
+          >
+            <TransformWrapper
+              initialScale={Math.min(window.innerWidth / 424, 1) * 0.9}
+              minScale={Math.min(window.innerWidth / 424, 1) * 0.9}
+              centerOnInit
+            >
+              <TransformComponent
+                wrapperStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <SeatPicker />
+              </TransformComponent>
+            </TransformWrapper>
+          </div>
+        </div>
       </article>
       <nav className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
         <BackButton href="/" />
