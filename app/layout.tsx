@@ -26,12 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs">
+    <html lang="cs" className="min-h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center h-dvh bg-[#201c1c]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center bg-[#201c1c]`}
       >
         <SettingsProvider>
-          <main className="flex flex-col max-w-md w-full h-full  font-[family-name:var(--font-geist-sans)] bg-background">
+          <main className="flex flex-col max-w-md w-full min-h-screen font-[family-name:var(--font-geist-sans)] bg-background overflow-auto">
             {children}
           </main>
         </SettingsProvider>
