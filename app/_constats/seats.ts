@@ -3,6 +3,7 @@ import { SelectSeatType } from "../_contexts/TestSessionContext";
 export const SEAT_ROWS = 9;
 export const SEAT_COLS = 10;
 export const SEAT_SIZE = 8;
+export const SEAT_SIZE_PX = 4 * 8 + "px";
 
 export const seatTypeToBgColor: Record<SelectSeatType, string> = {
   reserved: "bg-gradient-to-r from-gray-500 to-gray-400",
