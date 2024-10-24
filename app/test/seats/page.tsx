@@ -1,6 +1,6 @@
 "use client";
-import { useContext } from "react";
-import TestSessionContext from "@/app/_contexts/TestSessionContext";
+
+import { useEffect, useState } from "react";
 import { MovieHeader } from "../_components/MovieHeader";
 import { NextButton, BackButton } from "../_components/Navigation";
 import { BsQuestionCircle } from "react-icons/bs";
@@ -15,11 +15,18 @@ import { SeatPicker } from "./_components/SeatPicker";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function SeatsPage() {
-  const {} = useContext(TestSessionContext);
+  const [isClient, setIsClient] = useState(false);
 
-  if (typeof window === "undefined") {
-    return null; // fuck server side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
   }
+
+  const initialScale = Math.min(window.innerWidth / 424, 1) * 0.9;
+  const wrapperHeight = Math.min(window.innerWidth / 424, 1) * 396 + "px";
 
   return (
     <div className="flex flex-col h-full">
@@ -69,12 +76,13 @@ export default function SeatsPage() {
           <div
             className="w-full border rounded-md"
             style={{
-              height: Math.min(window.innerWidth / 424, 1) * 396 + "px",
+              height: wrapperHeight,
             }}
           >
             <TransformWrapper
-              initialScale={Math.min(window.innerWidth / 424, 1) * 0.9}
-              minScale={Math.min(window.innerWidth / 424, 1) * 0.9}
+              initialScale={initialScale}
+              minScale={initialScale}
+              maxScale={1.2}
               centerOnInit
             >
               <TransformComponent
