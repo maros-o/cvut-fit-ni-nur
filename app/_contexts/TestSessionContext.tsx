@@ -58,7 +58,6 @@ const reserveSeats = (numberOfSeats: number, selectedSeats: SelectSeat[][]) => {
       i--;
     }
   }
-  return selectedSeats;
 };
 
 export const TestSessionProvider = ({
