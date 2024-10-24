@@ -58,6 +58,7 @@ const reserveSeats = (numberOfSeats: number, selectedSeats: SelectSeat[][]) => {
       i--;
     }
   }
+  return selectedSeats;
 };
 
 export const TestSessionProvider = ({
@@ -89,16 +90,18 @@ export const TestSessionProvider = ({
 
   useEffect(() => {
     setMovie(getRandomMovie());
-    const newSeats: SelectSeat[][] = Array.from({ length: SEAT_ROWS }).map(
-      (_, row) =>
-        Array.from({ length: SEAT_COLS }).map((_, col) => ({
-          row,
-          col,
-          type: "empty",
-        }))
+    setSelectedSeats(
+      reserveSeats(
+        numberOfReservedSeatsOnStart,
+        Array.from({ length: SEAT_ROWS }).map((_, row) =>
+          Array.from({ length: SEAT_COLS }).map((_, col) => ({
+            row,
+            col,
+            type: "empty",
+          }))
+        )
+      )
     );
-    reserveSeats(numberOfReservedSeatsOnStart, newSeats);
-    setSelectedSeats(newSeats);
   }, []);
 
   const updateSeat = useCallback(
