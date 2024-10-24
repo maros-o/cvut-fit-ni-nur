@@ -15,9 +15,8 @@ import { SeatPicker } from "./_components/SeatPicker";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function SeatsPage() {
-  if (typeof window === "undefined") {
-    return null;
-  }
+  if (typeof window === "undefined") return null;
+
   const initialScale = Math.min(window.innerWidth / 424, 1) * 0.9;
   const wrapperHeight = Math.min(window.innerWidth / 424, 1) * 396 + "px";
 
@@ -29,7 +28,7 @@ export default function SeatsPage() {
           <PopoverTrigger className="absolute top-4 right-4 z-10 text-black/60">
             <BsQuestionCircle size={20} />
           </PopoverTrigger>
-          <PopoverContent className="text-sm p-2  w-fit max-w-[300px]">
+          <PopoverContent className="text-sm p-2 w-fit max-w-[300px] z-10">
             Vyberte barvu na paletě a poté klikněte na sedadlo, které chcete
             zakoupit.
           </PopoverContent>

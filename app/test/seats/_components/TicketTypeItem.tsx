@@ -41,7 +41,7 @@ export const TicketTypeItem = ({
           <span className="text-sm font-[500] relative">
             {ticketTypeToLabel[type]}
             {info && (
-              <PopoverTrigger className="absolute right-[-20px] top-0 text-black/60">
+              <PopoverTrigger className="absolute right-[-20px] top-0 text-black/60 z-10">
                 <IoMdInformationCircleOutline size={18} />
               </PopoverTrigger>
             )}
@@ -50,7 +50,7 @@ export const TicketTypeItem = ({
         </div>
       </div>
       {info && (
-        <PopoverContent className="text-sm p-2 w-fit max-w-[300px]">
+        <PopoverContent className="text-sm p-2 w-fit max-w-[300px] z-10">
           <span className="font-semibold">{ticketTypeToLabel[type]}</span>:{" "}
           {info}
         </PopoverContent>
