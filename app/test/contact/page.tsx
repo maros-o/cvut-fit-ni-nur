@@ -32,7 +32,18 @@ export default function ContactPage() {
   const [touchedFields, setTouchedFields] = useState<Set<keyof Contact>>(
     new Set()
   );
-  const [isValid, setIsValid] = useState(false);
+
+  const validateForm = useCallback((data: Contact): boolean => {
+    try {
+      contactSchema.parse(data);
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }, []);
+
+  const [isValid, setIsValid] = useState(validateForm(contact));
 
   const validateField = useCallback(
     (field: keyof Contact, value: string): string | undefined => {
@@ -62,16 +73,6 @@ export default function ContactPage() {
     }
     setErrors(newErrors);
   }, [contact, validateField]);
-
-  const validateForm = useCallback((data: Contact): boolean => {
-    try {
-      contactSchema.parse(data);
-      return true;
-    } catch (err) {
-      console.error(err);
-      return false;
-    }
-  }, []);
 
   const debouncedValidation = useCallback(
     debounce((field: keyof Contact, value: string, newFormData: Contact) => {
