@@ -50,7 +50,7 @@ export default function ContactPage() {
       try {
         const fieldSchema = contactSchema.shape[field];
         fieldSchema.parse(value);
-      } catch (err: any) {
+      } catch (err) {
         if (err instanceof z.ZodError) {
           return err.errors[0].message;
         }
