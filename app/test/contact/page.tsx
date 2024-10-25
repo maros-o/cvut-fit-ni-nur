@@ -25,6 +25,7 @@ import {
   inputContainer,
 } from "@/app/_constats/contact";
 import { Emoji } from "./_components/Emoji";
+import { Navbar } from "../_components/Navbar";
 
 export default function ContactPage() {
   const { contact, setContact } = useContext(TestSessionContext);
@@ -209,8 +210,7 @@ export default function ContactPage() {
           <Emoji errors={errors} isDone={isValid} />
         </div>
       </article>
-
-      <nav className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
+      <Navbar>
         <BackButton href="./seats" />
         <div className="flex justify-center items-center w-full">
           Kontaktní údaje
@@ -221,7 +221,7 @@ export default function ContactPage() {
           disabled={!isValid}
           onDisabledClick={() => validateAllFields()}
         />
-      </nav>
+      </Navbar>
     </div>
   );
 }

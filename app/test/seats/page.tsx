@@ -15,6 +15,7 @@ import { useContext } from "react";
 import TestSessionContext from "@/app/_contexts/TestSessionContext";
 import { Palette } from "./_components/Palette";
 import { TicketTypeList } from "./_components/TicketTypeList";
+import { Navbar } from "../_components/Navbar";
 
 export default function SeatsPage() {
   const { tickets } = useContext(TestSessionContext);
@@ -68,7 +69,7 @@ export default function SeatsPage() {
         </div>
         <TicketsSummary />
       </article>
-      <nav className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
+      <Navbar>
         <BackButton href="/" />
         <div className="flex justify-center items-center w-full">
           Výběr míst
@@ -78,7 +79,7 @@ export default function SeatsPage() {
           disabledInfo={"Nejprve vyberte sedadlo"}
           disabled={tickets.length === 0}
         />
-      </nav>
+      </Navbar>
     </div>
   );
 }
