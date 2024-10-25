@@ -24,7 +24,7 @@ export const contactSchema = z.object({
   phonePrefix: z.enum(["cz", "sk", "pl", "en", "de"] as const),
   phoneNumber: z
     .string()
-    .regex(/^\d{9}$|^\d{3} \d{3} \d{3}$/, "Telefon musí mít 9 číslic"),
+    .regex(/^\d{9}$|^\d{3} \d{3} \d{3}$/, "Telefonní číslo musí být 9 číslic"),
 });
 
 export type ContactErrors = {

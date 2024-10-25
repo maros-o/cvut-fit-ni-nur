@@ -19,7 +19,7 @@ const feedbackStates: FeedbackStates = {
   initial: {
     emoji: "🙂",
     symbol: "📝",
-    message: "Vyplň všechny údaje",
+    message: "Vyplň prosím všechny údaje",
     color: "bg-gray-200",
   },
   done: {
@@ -53,7 +53,7 @@ const feedbackStates: FeedbackStates = {
     color: "bg-red-200",
   },
   phoneNumber: {
-    emoji: "😳",
+    emoji: "😢",
     symbol: "📞",
     message: "Oprav si prosím telefonní číslo",
     color: "bg-red-200",
