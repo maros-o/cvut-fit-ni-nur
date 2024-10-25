@@ -38,7 +38,6 @@ export default function ContactPage() {
       contactSchema.parse(data);
       return true;
     } catch (err) {
-      console.error(err);
       return false;
     }
   }, []);

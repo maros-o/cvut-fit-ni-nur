@@ -65,10 +65,7 @@ export default function SettingsPage() {
         </div>
         <div className="flex items-center space-x-2 ps-9">
           <Switch
-            onCheckedChange={() => {
-              console.log("value");
-              setSetting("showEraser", !showEraser);
-            }}
+            onCheckedChange={() => setSetting("showEraser", !showEraser)}
             checked={showEraser}
           />
           <Label>Zobrazovat gumu</Label>
