@@ -8,13 +8,13 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { PaletteItem } from "./_components/PaletteItem";
-import { TicketTypeItem } from "./_components/TicketTypeItem";
 import { SeatPicker } from "./_components/SeatPicker";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { TicketsSummary } from "./_components/TicketsSummary";
 import { useContext } from "react";
 import TestSessionContext from "@/app/_contexts/TestSessionContext";
+import { Palette } from "./_components/Palette";
+import { TicketTypeList } from "./_components/TicketTypeList";
 
 export default function SeatsPage() {
   const { tickets } = useContext(TestSessionContext);
@@ -37,39 +37,11 @@ export default function SeatsPage() {
             zakoupit.
           </PopoverContent>
         </Popover>
-        <div className="flex mb-1">
-          <div className="flex flex-col gap-0.5 pt-1.5">
-            <TicketTypeItem type="adult" />
-            <TicketTypeItem
-              type="student"
-              info="S platným studentským průkazem do 26 let včetně"
-            />
-            <TicketTypeItem
-              type="child"
-              info="Do 12 let včetně. Dítě do 3 let nemusí platit vstupné, nemá ale nárok na vlastní sedačku."
-            />
-            <TicketTypeItem type="senior" info="Nad 60 let včetně" />
-            <TicketTypeItem
-              type="ztp"
-              info="Doprovod (jedna osoba) pro ZTP/P má vstupenku zdarma. Pro slevu ZTP nebo ZTP/P musíte předložit platný průkaz."
-            />
-          </div>
-          <div className="flex justify-center pt-0.5 items-center w-full">
-            <div className="flex relative">
-              <img
-                className="h-[236px] drop-shadow-lg"
-                alt="palette"
-                src="https://raw.githubusercontent.com/maros-o/cvut-fit-ni-nur-public-res/refs/heads/main/empty_palette.png"
-              />
-              <PaletteItem className="top-[46px] left-[46px]" type="adult" />
-              <PaletteItem className="top-[90px] left-[22px]" type="student" />
-              <PaletteItem className="top-[136px] left-[36px]" type="child" />
-              <PaletteItem className="top-[170px] left-[76px]" type="senior" />
-              <PaletteItem className="top-[160px] left-[126px]" type="ztp" />
-            </div>
-          </div>
+        <div className="flex">
+          <TicketTypeList />
+          <Palette />
         </div>
-        <div className="pe-3">
+        <div className="pe-3 mt-1.5">
           <div
             className="w-full border rounded-md"
             style={{

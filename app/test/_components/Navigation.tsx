@@ -9,19 +9,23 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 
+type NavigationButtonProps = {
+  href: string;
+  disabled?: boolean;
+  disabledInfo?: string;
+  icon?: React.ReactNode;
+  className?: string;
+  onDisabledClick?: () => void;
+};
+
 const NavigationButton = ({
   href,
   disabled,
   icon,
   className,
   disabledInfo,
-}: {
-  href: string;
-  disabled?: boolean;
-  disabledInfo?: string;
-  icon: React.ReactNode;
-  className?: string;
-}) => {
+  onDisabledClick,
+}: NavigationButtonProps) => {
   if (!disabled) {
     return (
       <Button
@@ -40,6 +44,7 @@ const NavigationButton = ({
   return (
     <Popover>
       <PopoverTrigger
+        onClick={onDisabledClick}
         className={`${className} flex justify-center items-center text-white w-[220px] h-[46px] rounded-xl drop-shadow opacity-50 cursor-not-allowed`}
       >
         {icon}
@@ -49,37 +54,17 @@ const NavigationButton = ({
   );
 };
 
-export const BackButton = ({
-  href,
-  disabled,
-  disabledInfo,
-}: {
-  href: string;
-  disabled?: boolean;
-  disabledInfo?: string;
-}) => (
+export const BackButton = (props: NavigationButtonProps) => (
   <NavigationButton
-    href={href}
-    disabled={disabled}
-    disabledInfo={disabledInfo}
+    {...props}
     icon={<IoMdArrowRoundBack />}
     className="bg-red-400 hover:bg-red-500"
   />
 );
 
-export const NextButton = ({
-  href,
-  disabled,
-  disabledInfo,
-}: {
-  href: string;
-  disabled?: boolean;
-  disabledInfo?: string;
-}) => (
+export const NextButton = (props: NavigationButtonProps) => (
   <NavigationButton
-    href={href}
-    disabled={disabled}
-    disabledInfo={disabledInfo}
+    {...props}
     icon={<IoMdArrowRoundForward />}
     className="bg-green-400 hover:bg-green-500"
   />

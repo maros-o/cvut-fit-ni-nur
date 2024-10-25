@@ -10,6 +10,7 @@ import {
 import { getRandomMovie, Movie } from "../_mock_data/movies";
 import { SEAT_COLS, SEAT_ROWS } from "../_constats/seats";
 import SettingsContext from "./SettingsContext";
+import { flagsAndPhonePrefix } from "../_constats/contact";
 
 type ContextData = {
   movie: Movie;
@@ -17,10 +18,11 @@ type ContextData = {
   agreeToTerms: boolean;
   tickets: Ticket[];
   selectedTicketType: TicketType;
-  setSelectedTicketType: (type: TicketType) => void;
   selectedSeats: SelectSeat[][];
+  setSelectedTicketType: React.Dispatch<React.SetStateAction<TicketType>>;
   updateSeat: (row: number, col: number, type: SelectSeatType) => void;
-  setAgreeToTerms: (value: boolean) => void;
+  setAgreeToTerms: React.Dispatch<React.SetStateAction<boolean>>;
+  setContact: React.Dispatch<React.SetStateAction<Contact>>;
 };
 
 export type Contact = {
@@ -76,7 +78,7 @@ export const TestSessionProvider = ({
     name: "",
     surname: "",
     email: "",
-    phonePrefix: "420",
+    phonePrefix: flagsAndPhonePrefix["cz"].code,
     phoneNumber: "",
   });
   const [agreeToTerms, setAgreeToTerms] = useState(false);
@@ -142,6 +144,7 @@ export const TestSessionProvider = ({
         selectedSeats,
         updateSeat,
         setAgreeToTerms,
+        setContact,
       }}
     >
       {children}

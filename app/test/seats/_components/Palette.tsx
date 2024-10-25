@@ -4,7 +4,26 @@ import TestSessionContext, {
 } from "@/app/_contexts/TestSessionContext";
 import { useContext } from "react";
 
-export const PaletteItem = ({
+export const Palette = ({}: {}) => {
+  return (
+    <div className="flex justify-center pt-0.5 items-center w-full">
+      <div className="flex relative">
+        <img
+          className="h-[236px] drop-shadow-lg"
+          alt="palette"
+          src="https://raw.githubusercontent.com/maros-o/cvut-fit-ni-nur-public-res/refs/heads/main/empty_palette.png"
+        />
+        <PaletteItem className="top-[46px] left-[46px]" type="adult" />
+        <PaletteItem className="top-[90px] left-[22px]" type="student" />
+        <PaletteItem className="top-[136px] left-[36px]" type="child" />
+        <PaletteItem className="top-[170px] left-[76px]" type="senior" />
+        <PaletteItem className="top-[160px] left-[126px]" type="ztp" />
+      </div>
+    </div>
+  );
+};
+
+const PaletteItem = ({
   type,
   className,
 }: {

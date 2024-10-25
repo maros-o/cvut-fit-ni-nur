@@ -15,7 +15,28 @@ import {
 import { useContext } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 
-export const TicketTypeItem = ({
+export const TicketTypeList = () => {
+  return (
+    <div className="flex flex-col gap-0.5 pt-1.5">
+      <TicketTypeItem type="adult" />
+      <TicketTypeItem
+        type="student"
+        info="S platným studentským průkazem do 26 let včetně"
+      />
+      <TicketTypeItem
+        type="child"
+        info="Do 12 let včetně. Dítě do 3 let nemusí platit vstupné, nemá ale nárok na vlastní sedačku."
+      />
+      <TicketTypeItem type="senior" info="Nad 60 let včetně" />
+      <TicketTypeItem
+        type="ztp"
+        info="Doprovod (jedna osoba) pro ZTP/P má vstupenku zdarma. Pro slevu ZTP nebo ZTP/P musíte předložit platný průkaz."
+      />
+    </div>
+  );
+};
+
+const TicketTypeItem = ({
   type,
   info,
 }: {

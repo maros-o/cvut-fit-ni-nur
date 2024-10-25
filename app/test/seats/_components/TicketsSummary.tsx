@@ -12,15 +12,8 @@ export const TicketsSummary = ({}: {}) => {
   const typesCount = ticketsToTypeCount(tickets);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="pe-3 w-full mb-2"
-    >
-      <motion.div
-        layout="position"
-        className="flex flex-col items-center w-full"
-      >
+    <div className="pe-3 w-full mb-2">
+      <div className="flex flex-col items-center w-full">
         <AnimatePresence mode="sync">
           <motion.div
             className="flex justify-center items-center gap-2.5 flex-wrap mt-2 text-sm font-semibold w-full"
@@ -64,7 +57,6 @@ export const TicketsSummary = ({}: {}) => {
             })}
           </motion.div>
         </AnimatePresence>
-
         <AnimatePresence mode="sync">
           {tickets.length > 0 && (
             <motion.hr
@@ -77,26 +69,21 @@ export const TicketsSummary = ({}: {}) => {
             />
           )}
         </AnimatePresence>
-
         <motion.div
           layout="position"
           transition={{ duration: 0.2 }}
           className="flex w-full text-sm text-center justify-center items-center gap-1"
         >
-          <motion.div
-            layout="position"
-            transition={{ duration: 0.2 }}
-            className="flex items-center gap-1"
-          >
+          <div className="flex items-center gap-1">
             <span>Celkem </span>
             <span className="font-semibold">{tickets.length ?? 0} </span>
             vstupenek za{" "}
             <span className="font-semibold">
               {getTicketTotalPrice(tickets)},-
             </span>
-          </motion.div>
+          </div>
         </motion.div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
