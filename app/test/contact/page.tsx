@@ -25,7 +25,6 @@ import {
   inputContainer,
 } from "@/app/_constats/contact";
 import { Emoji } from "./_components/Emoji";
-import { Navbar } from "../_components/Navbar";
 
 const useContactPage = () => {
   const { contact, setContact } = useContext(TestSessionContext);
@@ -116,7 +115,7 @@ export default function ContactPage() {
     validateAllFields,
     isValid,
   } = useContactPage();
-  
+
   return (
     <div className="flex flex-col h-full">
       <MovieHeader />
@@ -136,7 +135,6 @@ export default function ContactPage() {
             <span className="text-sm text-red-500">{errors.name}</span>
           )}
         </div>
-
         <div className={inputContainer}>
           <Label>Příjmení</Label>
           <Input
@@ -154,7 +152,6 @@ export default function ContactPage() {
             <span className="text-sm text-red-500">{errors.surname}</span>
           )}
         </div>
-
         <div className={inputContainer}>
           <Label>Email</Label>
           <Input
@@ -170,7 +167,6 @@ export default function ContactPage() {
             <span className="text-sm text-red-500">{errors.email}</span>
           )}
         </div>
-
         <div className={inputContainer}>
           <Label>Telefon</Label>
           <div className="flex gap-2">
@@ -193,11 +189,11 @@ export default function ContactPage() {
                       <span className="flex items-center gap-2">
                         <ReactCountryFlag
                           countryCode={code}
-                          svg
                           style={{
                             width: "1.2rem",
                             height: "1.2rem",
                           }}
+                          svg
                         />
                         {prefix}
                       </span>
@@ -226,7 +222,7 @@ export default function ContactPage() {
           <Emoji errors={errors} isDone={isValid} />
         </div>
       </article>
-      <Navbar>
+      <div className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
         <BackButton href="./seats" />
         <div className="flex justify-center items-center w-full">
           Kontaktní údaje
@@ -243,7 +239,7 @@ export default function ContactPage() {
             validateAllFields(contact, newTouched);
           }}
         />
-      </Navbar>
+      </div>
     </div>
   );
 }

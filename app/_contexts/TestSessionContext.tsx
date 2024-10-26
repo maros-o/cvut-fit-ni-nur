@@ -10,7 +10,7 @@ import {
 import { getRandomMovie, Movie } from "../_mock_data/movies";
 import { SEAT_COLS, SEAT_ROWS } from "../_constats/seats";
 import SettingsContext from "./SettingsContext";
-import { mockContact } from "../_mock_data/contact";
+import { defaultContact, mockContact } from "../_mock_data/contact";
 
 type ContextData = {
   movie: Movie;
@@ -74,7 +74,7 @@ export const TestSessionProvider = ({
     tags: [],
     thumbnail_url: "",
   });
-  const [contact, setContact] = useState<Contact>(mockContact);
+  const [contact, setContact] = useState<Contact>(defaultContact);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTicketType, setSelectedTicketType] =
