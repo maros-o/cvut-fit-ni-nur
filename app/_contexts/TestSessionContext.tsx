@@ -96,14 +96,6 @@ export const TestSessionProvider = ({
           type: "empty",
         }))
     );
-    // temp
-    newSeats[0][0].type = "adult";
-    newSeats[1][1].type = "child";
-    newSeats[2][2].type = "senior";
-    newSeats[3][3].type = "ztp";
-    newSeats[6][5].type = "ztp";
-    newSeats[4][4].type = "adult";
-
     reserveSeats(numberOfReservedSeatsOnStart, newSeats);
     setSeats(newSeats);
   }, [numberOfReservedSeatsOnStart]);
