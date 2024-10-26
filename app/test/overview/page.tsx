@@ -26,6 +26,7 @@ export default function OverviewPage() {
       opacity: 1,
       y: 0,
       transition: {
+        duration: 0.5,
         ease: "easeOut",
       },
     },
@@ -52,27 +53,28 @@ export default function OverviewPage() {
         type: "spring",
         stiffness: 100,
         damping: 15,
+        delay: 0.5,
       },
     },
   };
 
   return (
     <motion.div
-      className="flex flex-col h-full transition-all delay-500"
+      className="flex flex-col h-full"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <div className="flex flex-col h-full justify-evenly gap-2 py-3">
         <motion.div
-          className="flex gap-4 items-center justify-center px-4 transition-all delay-500"
+          className="flex gap-4 items-center justify-center px-4"
           variants={itemVariants}
         >
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-1/2 transition-all delay-500"
+            className="w-1/2"
           >
             <div className="relative aspect-[2/3] w-full">
               <Image
@@ -83,24 +85,24 @@ export default function OverviewPage() {
               />
             </div>
           </motion.div>
-          <div className="flex flex-col gap-1 w-1/2 transition-all delay-500">
+          <div className="flex flex-col gap-1 w-1/2">
             <motion.h1 className="text-xl font-bold" variants={itemVariants}>
               {movie.title}
             </motion.h1>
             <motion.div
-              className="flex-shrink-0 text-md transition-all delay-500"
+              className="flex-shrink-0 text-md"
               variants={itemVariants}
             >
               {movie.day} <span className="font-bold">{movie.datetime}</span>
             </motion.div>
             <motion.div
-              className="flex gap-1.5 flex-wrap transition-all delay-500"
+              className="flex gap-1.5 flex-wrap"
               variants={itemVariants}
             >
               {movie.tags.map((tag, index) => (
                 <motion.span
                   key={tag}
-                  className="px-1.5 py-1 bg-white rounded-md text-xs drop-shadow transition-all delay-500"
+                  className="px-1.5 py-1 bg-white rounded-md text-xs drop-shadow"
                   variants={tagVariants}
                   custom={index}
                   transition={{ delay: index * 0.1 }}
@@ -112,58 +114,40 @@ export default function OverviewPage() {
           </div>
         </motion.div>
         <motion.div
-          className="flex items-center justify-center transition-all delay-500"
+          className="flex items-center justify-center"
           variants={checkmarkVariants}
         >
           <IoMdCheckmarkCircleOutline className="text-[160px] text-green-500" />
         </motion.div>
-        <motion.article
-          className="flex flex-col px-4 transition-all delay-500"
-          variants={itemVariants}
-        >
+        <motion.article className="flex flex-col px-4" variants={itemVariants}>
           <div className="flex flex-col text-left">
-            <motion.p
-              className="mt-2 text-left transition-all delay-500"
-              variants={itemVariants}
-            >
+            <motion.p className="mt-2 text-left" variants={itemVariants}>
               Děkujeme a těšíme se na Vás
             </motion.p>
-            <motion.p
-              className="font-bold transition-all delay-500"
-              variants={itemVariants}
-            >
+            <motion.p className="font-bold" variants={itemVariants}>
               č. transakce{" "}
               <span className="bg-gray-100 px-2 py-1 rounded tracking-wide font-semibold">
                 45633
               </span>
             </motion.p>
-            <motion.p
-              className="mt-2 transition-all delay-500"
-              variants={itemVariants}
-            >
+            <motion.p className="mt-2" variants={itemVariants}>
               Vstupenky Vám byly zaslány na{" "}
               <span className="font-bold">{contact.email}</span>
             </motion.p>
-            <motion.p
-              className="mt-2 transition-all delay-500"
-              variants={itemVariants}
-            >
+            <motion.p className="mt-2" variants={itemVariants}>
               Chybný e-mail?{" "}
             </motion.p>
-            <motion.p
-              className="underline transition-all delay-500"
-              variants={itemVariants}
-            >
+            <motion.p className="underline" variants={itemVariants}>
               Kontaktujte nás s č. transakce
             </motion.p>
           </div>
         </motion.article>
       </div>
       <motion.div
-        className="flex items-center p-2 w-full border-t sticky bottom-0 bg-white transition-all delay-1000"
+        className="flex items-center p-2 w-full border-t sticky bottom-0 bg-white"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        transition={{ type: "spring" }}
+        transition={{ delay: 1, type: "spring" }}
       >
         <NextButton
           href={"/"}
