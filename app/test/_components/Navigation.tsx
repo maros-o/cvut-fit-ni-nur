@@ -29,7 +29,7 @@ const NavigationButton = ({
   if (!disabled) {
     return (
       <Button
-        className={`${className} p-0 m-0 w-[220px] h-[46px] rounded-xl drop-shadow`}
+        className={`${className} p-0 m-0 max-w-[120px] w-full h-[46px] rounded-xl drop-shadow`}
         aria-disabled={disabled}
         disabled={disabled}
         asChild

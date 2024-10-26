@@ -15,11 +15,11 @@ export const contactSchema = z.object({
   name: z
     .string()
     .min(2, "Jméno musí mít alespoň 2 znaky")
-    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/, "Jméno může obsahovat pouze písmena"),
+    .regex(/^[A-Za-zÀ-žŽá-žÁ-Ž]+$/, "Jméno může obsahovat pouze písmena"),
   surname: z
     .string()
     .min(2, "Příjmení musí mít alespoň 2 znaky")
-    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/, "Příjmení může obsahovat pouze písmena"),
+    .regex(/^[A-Za-zÀ-žŽá-žÁ-Ž]+$/, "Příjmení může obsahovat pouze písmena"),
   email: z.string().email("Neplatný formát emailu"),
   phonePrefix: z.enum(["cz", "sk", "pl", "en", "de"] as const),
   phoneNumber: z

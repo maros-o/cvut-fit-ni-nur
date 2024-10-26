@@ -2,14 +2,17 @@ import { ticketTypeToBgColor } from "@/app/_constats/ticket";
 import TestSessionContext, {
   TicketType,
 } from "@/app/_contexts/TestSessionContext";
+import Image from "next/image";
 import { useContext } from "react";
 
 export const Palette = ({}: {}) => {
   return (
     <div className="flex justify-center pt-0.5 items-center w-full">
       <div className="flex relative">
-        <img
-          className="h-[236px] drop-shadow-lg"
+        <Image
+          className="drop-shadow-lg"
+          height={236}
+          width={212}
           alt="palette"
           src="https://raw.githubusercontent.com/maros-o/cvut-fit-ni-nur-public-res/refs/heads/main/empty_palette.png"
         />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { MovieHeader } from "../_components/MovieHeader";
 import { NextButton, BackButton } from "../_components/Navigation";
 import {
@@ -27,7 +27,7 @@ import {
 import { Emoji } from "./_components/Emoji";
 import { Navbar } from "../_components/Navbar";
 
-export default function ContactPage() {
+const useContactPage = () => {
   const { contact, setContact } = useContext(TestSessionContext);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [touchedFields, setTouchedFields] = useState<Set<keyof Contact>>(
@@ -45,44 +45,33 @@ export default function ContactPage() {
 
   const [isValid, setIsValid] = useState(validateForm(contact));
 
-  const validateField = useCallback(
-    (field: keyof Contact, value: string): string | undefined => {
-      try {
-        const fieldSchema = contactSchema.shape[field];
-        fieldSchema.parse(value);
-      } catch (err) {
-        if (err instanceof z.ZodError) {
-          return err.errors[0].message;
+  const validateAllFields = useCallback(
+    (
+      newFormData: Contact,
+      newTouchedFields: Set<keyof Contact> = new Set()
+    ) => {
+      const newErrors: ContactErrors = {};
+      for (const field in newFormData) {
+        const f = field as keyof Contact;
+        if (!newTouchedFields.has(f)) continue;
+        try {
+          const fieldSchema = contactSchema.shape[f];
+          fieldSchema.parse(newFormData[f]);
+        } catch (err) {
+          if (err instanceof z.ZodError) {
+            newErrors[f] = err.errors[0].message;
+          }
         }
       }
+      setErrors(newErrors);
     },
     []
   );
 
-  const validateAllFields = useCallback(() => {
-    setTouchedFields(new Set(Object.keys(contact) as (keyof Contact)[]));
-    const newErrors: ContactErrors = {};
-    for (const field in contact) {
-      const fieldError = validateField(
-        field as keyof Contact,
-        contact[field as keyof Contact]
-      );
-      if (fieldError) {
-        newErrors[field as keyof Contact] = fieldError;
-      }
-    }
-    setErrors(newErrors);
-  }, [contact, validateField]);
-
   const debouncedValidation = useCallback(
-    debounce((field: keyof Contact, value: string, newFormData: Contact) => {
-      const fieldError = validateField(field, value);
-      setErrors((prev) => ({
-        ...prev,
-        [field]: fieldError,
-      }));
-      setIsValid(validateForm(newFormData));
-    }, 500),
+    debounce((newFormData: Contact, newTouchedFields: Set<keyof Contact>) => {
+      validateAllFields(newFormData, newTouchedFields);
+    }, 700),
     []
   );
 
@@ -93,14 +82,41 @@ export default function ContactPage() {
         ...prev,
         [field]: value,
       }));
-      debouncedValidation(field, value, {
-        ...contact,
-        [field]: value,
-      });
     },
-    [contact]
+    []
   );
 
+  useEffect(() => {
+    const newValid = validateForm(contact);
+    if (isValid && !newValid) {
+      validateAllFields(contact, touchedFields);
+    }
+    setIsValid(newValid);
+    debouncedValidation(contact, touchedFields);
+  }, [contact, touchedFields]);
+
+  return {
+    contact,
+    errors,
+    touchedFields,
+    setTouchedFields,
+    handleInputChange,
+    validateAllFields,
+    isValid,
+  };
+};
+
+export default function ContactPage() {
+  const {
+    contact,
+    errors,
+    touchedFields,
+    setTouchedFields,
+    handleInputChange,
+    validateAllFields,
+    isValid,
+  } = useContactPage();
+  
   return (
     <div className="flex flex-col h-full">
       <MovieHeader />
@@ -110,7 +126,7 @@ export default function ContactPage() {
           <Input
             type="text"
             placeholder="Karel"
-            value={contact.name}
+            defaultValue={contact.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             className={
               touchedFields.has("name") && errors.name ? "border-red-500" : ""
@@ -126,7 +142,7 @@ export default function ContactPage() {
           <Input
             type="text"
             placeholder="Novák"
-            value={contact.surname}
+            defaultValue={contact.surname}
             onChange={(e) => handleInputChange("surname", e.target.value)}
             className={
               touchedFields.has("surname") && errors.surname
@@ -144,7 +160,7 @@ export default function ContactPage() {
           <Input
             type="email"
             placeholder="karel.novak@gmail.com"
-            value={contact.email}
+            defaultValue={contact.email}
             onChange={(e) => handleInputChange("email", e.target.value)}
             className={
               touchedFields.has("email") && errors.email ? "border-red-500" : ""
@@ -159,7 +175,7 @@ export default function ContactPage() {
           <Label>Telefon</Label>
           <div className="flex gap-2">
             <Select
-              value={contact.phonePrefix}
+              defaultValue={contact.phonePrefix}
               onValueChange={(value) =>
                 handleInputChange(
                   "phonePrefix",
@@ -193,7 +209,7 @@ export default function ContactPage() {
             <Input
               type="tel"
               placeholder="123456789"
-              value={contact.phoneNumber}
+              defaultValue={contact.phoneNumber}
               onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
               className={`tracking-wide  ${
                 touchedFields.has("phoneNumber") && errors.phoneNumber
@@ -219,7 +235,13 @@ export default function ContactPage() {
           href="./confirmation"
           disabledInfo={"Nejprve správně vyplňte všechny kontaktní údaje"}
           disabled={!isValid}
-          onDisabledClick={() => validateAllFields()}
+          onDisabledClick={() => {
+            const newTouched = new Set(
+              Object.keys(contact) as (keyof Contact)[]
+            );
+            setTouchedFields(newTouched);
+            validateAllFields(contact, newTouched);
+          }}
         />
       </Navbar>
     </div>

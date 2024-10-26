@@ -53,7 +53,7 @@ const feedbackStates: FeedbackStates = {
     color: "bg-red-200",
   },
   phoneNumber: {
-    emoji: "😢",
+    emoji: "😟",
     symbol: "📞",
     message: "Oprav si prosím telefonní číslo",
     color: "bg-red-200",
@@ -110,13 +110,12 @@ export const Emoji = ({
   isDone: boolean;
 }) => {
   const determineState = (): FeedbackStateKey => {
-    if (isDone) return "done";
     if (Object.values(errors).some((error) => error)) {
       return Object.keys(errors).find(
         (key) => errors[key as keyof ContactErrors]
       ) as FeedbackStateKey;
     }
-    return "initial";
+    return isDone ? "done" : "initial";
   };
 
   const currentFeedback = feedbackStates[determineState()];
@@ -145,10 +144,10 @@ export const Emoji = ({
           {currentFeedback.symbol}
         </motion.span>
       </div>
-
       <motion.span
         variants={messageVariants}
-        className="text-lg font-medium text-gray-700 text-center"
+        className="text-lg font-medium text-gray-800 text-center z-10 
+          bg-white/30 px-4 py-2 rounded-full backdrop-blur-sm mt-1"
         key={currentFeedback.message}
       >
         {currentFeedback.message}

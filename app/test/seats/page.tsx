@@ -42,7 +42,7 @@ export default function SeatsPage() {
           <TicketTypeList />
           <Palette />
         </div>
-        <div className="pe-3 mt-1.5">
+        <div className="pe-3 mt-2">
           <div
             className="w-full border rounded-md"
             style={{
