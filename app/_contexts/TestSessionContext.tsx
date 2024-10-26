@@ -18,7 +18,7 @@ type ContextData = {
   agreeToTerms: boolean;
   tickets: Ticket[];
   selectedTicketType: TicketType;
-  selectedSeats: SelectSeat[][];
+  seats: SelectSeat[][];
   setSelectedTicketType: React.Dispatch<React.SetStateAction<TicketType>>;
   updateSeat: (row: number, col: number, type: SelectSeatType) => void;
   setAgreeToTerms: React.Dispatch<React.SetStateAction<boolean>>;
@@ -50,12 +50,12 @@ export type Ticket = Seat & {
   type: TicketType;
 };
 
-const reserveSeats = (numberOfSeats: number, selectedSeats: SelectSeat[][]) => {
+const reserveSeats = (numberOfSeats: number, seats: SelectSeat[][]) => {
   for (let i = 0; i < numberOfSeats; i++) {
     const row = Math.floor(Math.random() * SEAT_ROWS);
     const col = Math.floor(Math.random() * SEAT_COLS);
-    if (selectedSeats[row][col].type === "empty") {
-      selectedSeats[row][col].type = "reserved";
+    if (seats[row][col].type === "empty") {
+      seats[row][col].type = "reserved";
     } else {
       i--;
     }
@@ -79,7 +79,7 @@ export const TestSessionProvider = ({
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTicketType, setSelectedTicketType] =
     useState<TicketType>("adult");
-  const [selectedSeats, setSelectedSeats] = useState<SelectSeat[][]>([]);
+  const [seats, setSeats] = useState<SelectSeat[][]>([]);
 
   const { numberOfReservedSeatsOnStart } = useContext(SettingsContext);
 
@@ -96,13 +96,21 @@ export const TestSessionProvider = ({
           type: "empty",
         }))
     );
+    // temp
+    newSeats[0][0].type = "adult";
+    newSeats[1][1].type = "child";
+    newSeats[2][2].type = "senior";
+    newSeats[3][3].type = "ztp";
+    newSeats[6][5].type = "ztp";
+    newSeats[4][4].type = "adult";
+
     reserveSeats(numberOfReservedSeatsOnStart, newSeats);
-    setSelectedSeats(newSeats);
+    setSeats(newSeats);
   }, [numberOfReservedSeatsOnStart]);
 
   useEffect(() => {
     setTickets(
-      selectedSeats
+      seats
         .flat()
         .filter((seat) => seat.type !== "empty" && seat.type !== "reserved")
         .map((seat) => ({
@@ -110,11 +118,11 @@ export const TestSessionProvider = ({
           type: seat.type as TicketType,
         }))
     );
-  }, [selectedSeats]);
+  }, [seats]);
 
   const updateSeat = useCallback(
     (row: number, col: number, type: SelectSeatType) =>
-      setSelectedSeats((prev) =>
+      setSeats((prev) =>
         prev.map((prevRow) =>
           prevRow.map((prevCol) =>
             prevCol.row === row && prevCol.col === col
@@ -134,7 +142,7 @@ export const TestSessionProvider = ({
         agreeToTerms,
         tickets,
         selectedTicketType,
-        selectedSeats,
+        seats,
         updateSeat,
         setSelectedTicketType,
         setAgreeToTerms,

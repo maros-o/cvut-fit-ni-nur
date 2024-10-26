@@ -12,7 +12,7 @@ import { MAX_TICKETS, ticketTypeToIcon } from "@/app/_constats/ticket";
 import { useToast } from "@/hooks/use-toast";
 
 export const SeatPicker = ({}: {}) => {
-  const { selectedTicketType, updateSeat, selectedSeats, tickets } =
+  const { selectedTicketType, updateSeat, seats, tickets } =
     useContext(TestSessionContext);
   const { toast } = useToast();
 
@@ -60,7 +60,7 @@ export const SeatPicker = ({}: {}) => {
             </div>
           ))}
         </div>
-        {selectedSeats.map((row, rowIdx) => (
+        {seats.map((row, rowIdx) => (
           <div key={`row-${rowIdx}`} className="flex items-center mb-1 gap-1">
             <div
               className={`flex items-center justify-center font-bold`}

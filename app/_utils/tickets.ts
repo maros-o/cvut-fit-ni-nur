@@ -17,3 +17,7 @@ export const ticketsToTypeCount = (tickets: Ticket[]) => {
 
 export const getTicketTotalPrice = (tickets: Ticket[]) =>
   tickets.reduce((acc, ticket) => acc + ticketTypeToPrice[ticket.type], 0);
+
+export const getTicketRows = (tickets: Ticket[]) => {
+  return Array.from(new Set(tickets.map((ticket) => ticket.row))).sort((a, b) => a - b);
+};

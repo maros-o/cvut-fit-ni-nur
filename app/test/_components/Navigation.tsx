@@ -15,7 +15,9 @@ type NavigationButtonProps = {
   disabledInfo?: string;
   icon?: React.ReactNode;
   className?: string;
+  text?: string;
   onDisabledClick?: () => void;
+  fullWidth?: boolean;
 };
 
 const NavigationButton = ({
@@ -25,17 +27,22 @@ const NavigationButton = ({
   className,
   disabledInfo,
   onDisabledClick,
+  text,
+  fullWidth,
 }: NavigationButtonProps) => {
   if (!disabled) {
     return (
       <Button
-        className={`${className} p-0 m-0 max-w-[120px] w-full h-[46px] rounded-xl drop-shadow`}
+        className={`${className} ${
+          fullWidth ? "" : "max-w-[120px]"
+        } p-0 m-0 w-full h-[46px] rounded-xl drop-shadow`}
         aria-disabled={disabled}
         disabled={disabled}
         asChild
       >
         <Link href={href} shallow={true}>
           {icon}
+          {text}
         </Link>
       </Button>
     );
@@ -45,9 +52,12 @@ const NavigationButton = ({
     <Popover>
       <PopoverTrigger
         onClick={onDisabledClick}
-        className={`${className} flex justify-center items-center text-white w-[220px] h-[46px] rounded-xl drop-shadow opacity-50 cursor-not-allowed`}
+        className={`${className} ${
+          fullWidth ? "" : "max-w-[120px]"
+        } flex justify-center items-center text-white w-full h-[46px] rounded-xl drop-shadow opacity-50 cursor-not-allowed`}
       >
         {icon}
+        {text}
       </PopoverTrigger>
       <PopoverContent>{disabledInfo}</PopoverContent>
     </Popover>
@@ -62,10 +72,12 @@ export const BackButton = (props: NavigationButtonProps) => (
   />
 );
 
-export const NextButton = (props: NavigationButtonProps) => (
+export const NextButton = (
+  props: NavigationButtonProps & { hideIcon?: boolean }
+) => (
   <NavigationButton
     {...props}
-    icon={<IoMdArrowRoundForward />}
+    icon={props.hideIcon ? undefined : <IoMdArrowRoundForward />}
     className="bg-green-400 hover:bg-green-500"
   />
 );
