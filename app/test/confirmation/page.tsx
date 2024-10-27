@@ -40,18 +40,18 @@ export default function ConfirmationPage() {
         <div className="mb-6">
           <h2 className="text-lg font-bold mb-2">Kontakt</h2>
           <div className="flex flex-col gap-2">
-            <span>
+            <p>
               {contact.name} {contact.surname}
-            </span>
-            <span>{contact.email}</span>
-            <span className="tracking-wide">
+            </p>
+            <p>{contact.email}</p>
+            <p className="tracking-wide">
               {
                 flagsAndPhonePrefix[
                   contact.phonePrefix as keyof typeof flagsAndPhonePrefix
                 ].prefix
               }{" "}
               {formatPhoneNumber(contact.phoneNumber)}
-            </span>
+            </p>
           </div>
           <Button variant="outline" className="mt-2" asChild>
             <Link href="./contact" shallow={true} prefetch={true}>
