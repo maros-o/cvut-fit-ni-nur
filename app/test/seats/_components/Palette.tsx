@@ -1,11 +1,16 @@
 import { ticketTypeToBgColor } from "@/app/_constats/ticket";
+import SettingsContext from "@/app/_contexts/SettingsContext";
 import TestSessionContext, {
+  PaletteSelectType,
   TicketType,
 } from "@/app/_contexts/TestSessionContext";
 import Image from "next/image";
 import { useContext } from "react";
+import { BsFillEraserFill } from "react-icons/bs";
 
-export const Palette = ({}: {}) => {
+export const Palette = () => {
+  const { showEraser } = useContext(SettingsContext);
+
   return (
     <div className="flex justify-center pt-0.5 items-center w-full">
       <div className="flex relative">
@@ -21,6 +26,9 @@ export const Palette = ({}: {}) => {
         <PaletteItem className="top-[136px] left-[36px]" type="child" />
         <PaletteItem className="top-[170px] left-[76px]" type="senior" />
         <PaletteItem className="top-[160px] left-[126px]" type="ztp" />
+        {showEraser && (
+          <Eraser className="top-[106px] left-[86px]" type="eraser" />
+        )}
       </div>
     </div>
   );
@@ -30,24 +38,48 @@ const PaletteItem = ({
   type,
   className,
 }: {
-  type: TicketType;
+  type: PaletteSelectType;
   className: string;
 }) => {
-  const { selectedTicketType, setSelectedTicketType } =
+  const { selectedPaletteType, setSelectedPaletterType } =
     useContext(TestSessionContext);
 
   return (
     <div
       className={`${className} ${
-        ticketTypeToBgColor[type]
+        ticketTypeToBgColor[type as TicketType]
       } absolute w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
-        selectedTicketType === type
+        selectedPaletteType === type
           ? "outline outline-2 outline-gray-600 scale-105"
           : ""
       }`}
-      onClick={() => setSelectedTicketType(type)}
+      onClick={() => setSelectedPaletterType(type)}
     >
       <div className="absolute w-4 h-4 top-2 right-2 rounded-full bg-white/30"></div>
+    </div>
+  );
+};
+
+const Eraser = ({
+  type,
+  className,
+}: {
+  type: PaletteSelectType;
+  className: string;
+}) => {
+  const { selectedPaletteType, setSelectedPaletterType } =
+    useContext(TestSessionContext);
+
+  return (
+    <div
+      className={`${className} bg-white/80 flex justify-center items-center absolute w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
+        selectedPaletteType === type
+          ? "outline outline-2 outline-gray-600 scale-105"
+          : ""
+      }`}
+      onClick={() => setSelectedPaletterType(type)}
+    >
+      <BsFillEraserFill size={28} className="text-red-700" />
     </div>
   );
 };

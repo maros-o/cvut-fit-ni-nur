@@ -17,10 +17,12 @@ type ContextData = {
   contact: Contact;
   agreeToTerms: boolean;
   tickets: Ticket[];
-  selectedTicketType: TicketType;
+  selectedPaletteType: PaletteSelectType;
   seats: SelectSeat[][];
-  setSelectedTicketType: React.Dispatch<React.SetStateAction<TicketType>>;
-  updateSeat: (row: number, col: number, type: SelectSeatType) => void;
+  updateSeat: (row: number, col: number, type: SeatType) => void;
+  setSelectedPaletterType: React.Dispatch<
+    React.SetStateAction<PaletteSelectType>
+  >;
   setAgreeToTerms: React.Dispatch<React.SetStateAction<boolean>>;
   setContact: React.Dispatch<React.SetStateAction<Contact>>;
 };
@@ -35,7 +37,9 @@ export type Contact = {
 
 export type TicketType = "senior" | "adult" | "student" | "child" | "ztp";
 
-export type SelectSeatType = "reserved" | "empty" | TicketType;
+export type PaletteSelectType = TicketType | "eraser";
+
+export type SeatType = TicketType | "reserved" | "empty";
 
 type Seat = {
   row: number;
@@ -43,7 +47,7 @@ type Seat = {
 };
 
 export type SelectSeat = Seat & {
-  type: SelectSeatType;
+  type: SeatType;
 };
 
 export type Ticket = Seat & {
@@ -77,8 +81,8 @@ export const TestSessionProvider = ({
   const [contact, setContact] = useState<Contact>(defaultContact);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [selectedTicketType, setSelectedTicketType] =
-    useState<TicketType>("adult");
+  const [selectedPaletteType, setSelectedPaletterType] =
+    useState<PaletteSelectType>("adult");
   const [seats, setSeats] = useState<SelectSeat[][]>([]);
 
   const { numberOfReservedSeatsOnStart } = useContext(SettingsContext);
@@ -113,7 +117,7 @@ export const TestSessionProvider = ({
   }, [seats]);
 
   const updateSeat = useCallback(
-    (row: number, col: number, type: SelectSeatType) =>
+    (row: number, col: number, type: SeatType) =>
       setSeats((prev) =>
         prev.map((prevRow) =>
           prevRow.map((prevCol) =>
@@ -133,10 +137,10 @@ export const TestSessionProvider = ({
         contact,
         agreeToTerms,
         tickets,
-        selectedTicketType,
+        selectedPaletteType,
         seats,
         updateSeat,
-        setSelectedTicketType,
+        setSelectedPaletterType,
         setAgreeToTerms,
         setContact,
       }}

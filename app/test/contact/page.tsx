@@ -224,9 +224,7 @@ export default function ContactPage() {
       </article>
       <div className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
         <BackButton href="./seats" />
-        <div className="flex justify-center items-center w-full">
-          Kontaktní údaje
-        </div>
+        <div className="flex justify-center items-center w-full">Kontakt</div>
         <NextButton
           href="./confirmation"
           disabledInfo={"Nejprve správně vyplňte všechny kontaktní údaje"}

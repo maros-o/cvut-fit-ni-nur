@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import TestSessionContext, {
   SelectSeat,
   TicketType,
@@ -12,26 +12,35 @@ import { MAX_TICKETS, ticketTypeToIcon } from "@/app/_constats/ticket";
 import { useToast } from "@/hooks/use-toast";
 
 export const SeatPicker = ({}: {}) => {
-  const { selectedTicketType, updateSeat, seats, tickets } =
+  const { selectedPaletteType, updateSeat, seats, tickets } =
     useContext(TestSessionContext);
   const { toast } = useToast();
 
-  const toggleSeatSelection = (seat: SelectSeat) => {
-    if (seat.type === "reserved") return;
-    if (seat.type === "empty" && tickets.length === MAX_TICKETS) {
-      toast({
-        title: "Nelze vybrat",
-        description: `Maximální počet vstupenek je ${MAX_TICKETS}`,
-        duration: 5000,
-      });
-      return;
-    }
-    updateSeat(
-      seat.row,
-      seat.col,
-      seat.type === selectedTicketType ? "empty" : selectedTicketType
-    );
-  };
+  const toggleSeatSelection = useCallback(
+    (seat: SelectSeat) => {
+      if (seat.type === "reserved") return;
+      if (selectedPaletteType === "eraser") {
+        if (seat.type !== "empty") {
+          updateSeat(seat.row, seat.col, "empty");
+        }
+        return;
+      }
+      if (seat.type === "empty" && tickets.length === MAX_TICKETS) {
+        toast({
+          title: "Nelze vybrat",
+          description: `Maximální počet vstupenek je ${MAX_TICKETS}`,
+          duration: 5000,
+        });
+        return;
+      }
+      updateSeat(
+        seat.row,
+        seat.col,
+        seat.type === selectedPaletteType ? "empty" : selectedPaletteType
+      );
+    },
+    [selectedPaletteType, tickets, updateSeat, toast]
+  );
 
   return (
     <div className="rounded-md bg-gray-100 py-3 w-[424px] flex flex-col flex-shrink-0">

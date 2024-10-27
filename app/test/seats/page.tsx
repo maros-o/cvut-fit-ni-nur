@@ -33,7 +33,14 @@ export default function SeatsPage() {
             <BsQuestionCircle size={20} />
           </PopoverTrigger>
           <PopoverContent className="text-sm p-2 w-fit max-w-[300px] z-10">
-            Vyberte barvu podle typu vstupenky a klikněte na sedadlo v sále.
+            <p>
+              Vyberte barvu podle typu vstupenky a klikněte na sedadlo v sále.
+            </p>
+            <p>Tmavá sedadla jsou již obsazená, světlá sedadla jsou volná.</p>
+            <p>
+              Mazat Vámi vybrané místa lze pomocí gumy nebo opětovným kliknutím
+              na vybrané sedadlo.
+            </p>
           </PopoverContent>
         </Popover>
         <div className="flex">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { motion, Variants } from "framer-motion";
 import { ContactErrors } from "@/app/_constats/contact";
 
@@ -15,7 +15,7 @@ type FeedbackStates = {
 
 type FeedbackStateKey = keyof FeedbackStates;
 
-const feedbackStates: FeedbackStates = {
+const FEED_BACK_STATES: FeedbackStates = {
   initial: {
     emoji: "🙂",
     symbol: "📝",
@@ -109,16 +109,16 @@ export const Emoji = ({
   errors: ContactErrors;
   isDone: boolean;
 }) => {
-  const determineState = (): FeedbackStateKey => {
+  const determineState = useCallback((): FeedbackStateKey => {
     if (Object.values(errors).some((error) => error)) {
       return Object.keys(errors).find(
         (key) => errors[key as keyof ContactErrors]
       ) as FeedbackStateKey;
     }
     return isDone ? "done" : "initial";
-  };
+  }, [errors, isDone]);
 
-  const currentFeedback = feedbackStates[determineState()];
+  const currentFeedback = FEED_BACK_STATES[determineState()];
 
   return (
     <motion.div

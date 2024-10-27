@@ -43,21 +43,21 @@ const TicketTypeItem = ({
   type: TicketType;
   info?: string;
 }) => {
-  const { selectedTicketType, setSelectedTicketType } =
+  const { selectedPaletteType, setSelectedPaletterType } =
     useContext(TestSessionContext);
 
   return (
     <Popover>
       <div
         className={`flex items-center gap-2 px-2 py-1 rounded-sm pe-[20px] text-left ${
-          selectedTicketType === type
+          selectedPaletteType === type
             ? " outline outline-gray-500 outline-2"
             : ""
         }`}
       >
         <div
           className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm cursor-pointer flex items-center justify-center`}
-          onClick={() => setSelectedTicketType(type)}
+          onClick={() => setSelectedPaletterType(type)}
         >
           {ticketTypeToIcon[type]}
         </div>

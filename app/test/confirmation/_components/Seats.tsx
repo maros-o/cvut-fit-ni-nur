@@ -43,22 +43,22 @@ export const Seats = () => {
           </div>
         ))}
       </div>
-      {rows.map((row, rowIdx) => (
+      {rows.map((row) => (
         <>
           {rowsWithGaps.includes(row) && (
             <div
-              key={`gap-${rowIdx}`}
+              key={`gap-${row}`}
               className="flex items-center justify-center w-full h-[14px] pb-[4px] gap-1"
             >
               <BsThreeDots />
             </div>
           )}
-          <div key={`row-${rowIdx}`} className="flex items-center mb-1 gap-1">
+          <div key={`row-${row}`} className="flex items-center mb-1 gap-1">
             <div
               className={`flex items-center justify-center font-semibold`}
               style={{ width: dynamicSeatSizePx, height: dynamicSeatSizePx }}
             >
-              {String.fromCharCode(65 + rowIdx)}
+              {String.fromCharCode(65 + row)}
             </div>
             <div
               className={`grid gap-1`}
@@ -70,7 +70,7 @@ export const Seats = () => {
                 if (seat.type === "reserved") {
                   return (
                     <div
-                      key={`${rowIdx}-${seat.col}`}
+                      key={`${row}-${seat.col}`}
                       className={`select-none drop-shadow rounded-sm flex items-center justify-center bg-white relative ${
                         seatTypeToBgColor[seat.type]
                       }`}
@@ -89,7 +89,7 @@ export const Seats = () => {
                 }
                 return (
                   <div
-                    key={`${rowIdx}-${seat.col}`}
+                    key={`${row}-${seat.col}`}
                     className={`rounded-sm flex items-center justify-center drop-shadow text-black/80 ${
                       seatTypeToBgColor[seat.type]
                     }`}
