@@ -67,10 +67,7 @@ export default function ConfirmationPage() {
           />
           <div className="grid gap-1.5 leading-none">
             <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              Souhlasím s{" "}
-              <Link className="underline font-semibold" href={""}>
-                VOP
-              </Link>
+              Souhlasím s <span className="underline font-semibold">VOP</span>
             </label>
           </div>
         </div>
