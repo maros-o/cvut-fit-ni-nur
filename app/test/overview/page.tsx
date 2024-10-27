@@ -127,7 +127,7 @@ export default function OverviewPage() {
             <motion.p className="font-bold" variants={itemVariants}>
               č. transakce{" "}
               <span className="bg-gray-100 px-2 py-1 rounded tracking-wide font-semibold">
-                45633
+                {Math.floor(Math.random() * 10000)}
               </span>
             </motion.p>
             <motion.p className="mt-2" variants={itemVariants}>
