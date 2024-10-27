@@ -11,7 +11,7 @@ export const MovieHeader = () => {
       <h1 className="text-xl font-bold truncate">{movie.title}</h1>
       <div className="flex justify-between w-full gap-2 items-center">
         <div className="flex-shrink-0 text-md">
-          {movie.day} <span className="font-bold">{movie.datetime}</span>
+          {movie.day} <span className="font-semibold">{movie.datetime}</span>
         </div>
         <div className="flex gap-1.5 flex-wrap">
           {movie.tags.map((tag) => (

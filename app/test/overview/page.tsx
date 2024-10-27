@@ -93,7 +93,8 @@ export default function OverviewPage() {
               className="flex-shrink-0 text-md"
               variants={itemVariants}
             >
-              {movie.day} <span className="font-bold">{movie.datetime}</span>
+              {movie.day}{" "}
+              <span className="font-semibold">{movie.datetime}</span>
             </motion.div>
             <motion.div
               className="flex gap-1.5 flex-wrap"
