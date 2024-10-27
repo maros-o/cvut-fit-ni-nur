@@ -124,6 +124,8 @@ export default function ContactPage() {
           <Label>Jméno</Label>
           <Input
             type="text"
+            name="given-name"
+            autoComplete="given-name"
             placeholder="Karel"
             defaultValue={contact.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
@@ -139,6 +141,8 @@ export default function ContactPage() {
           <Label>Příjmení</Label>
           <Input
             type="text"
+            name="family-name"
+            autoComplete="family-name"
             placeholder="Novák"
             defaultValue={contact.surname}
             onChange={(e) => handleInputChange("surname", e.target.value)}
@@ -156,6 +160,8 @@ export default function ContactPage() {
           <Label>Email</Label>
           <Input
             type="email"
+            name="email"
+            autoComplete="email"
             placeholder="karel.novak@gmail.com"
             defaultValue={contact.email}
             onChange={(e) => handleInputChange("email", e.target.value)}
@@ -204,6 +210,8 @@ export default function ContactPage() {
             </Select>
             <Input
               type="tel"
+              name="tel"
+              autoComplete="tel"
               placeholder="123456789"
               defaultValue={contact.phoneNumber}
               onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
