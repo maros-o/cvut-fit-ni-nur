@@ -4,7 +4,7 @@ import TestSessionContext, {
   TicketType,
 } from "@/app/_contexts/TestSessionContext";
 import { getTicketRows } from "@/app/_utils/tickets";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { BsThreeDots } from "react-icons/bs";
 
 export const Seats = () => {
@@ -22,7 +22,9 @@ export const Seats = () => {
   }, [] as number[]);
   const fixedWidth = 3 * 4 + 4 + 3 * 4 + 4 * SEAT_COLS;
   const dynamicSeatSizePx =
-    (Math.min(window.innerWidth, 425) - fixedWidth) / (SEAT_COLS + 1.5) + "px";
+    Math.floor(
+      (Math.min(window.innerWidth, 425) - fixedWidth) / (SEAT_COLS + 1.5)
+    ) + "px";
 
   return (
     <div className="flex flex-col items-start bg-gray-200 rounded-md pb-2 mb-2 w-fit pe-3 ps-1 opacity-70 ">
@@ -44,7 +46,7 @@ export const Seats = () => {
         ))}
       </div>
       {rows.map((row) => (
-        <>
+        <Fragment key={`row-fragment-${row}`}>
           {rowsWithGaps.includes(row) && (
             <div
               key={`gap-${row}`}
@@ -104,7 +106,7 @@ export const Seats = () => {
               })}
             </div>
           </div>
-        </>
+        </Fragment>
       ))}
     </div>
   );
