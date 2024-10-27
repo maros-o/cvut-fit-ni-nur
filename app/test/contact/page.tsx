@@ -77,6 +77,19 @@ const useContactPage = () => {
   const handleInputChange = useCallback(
     (field: keyof Contact, value: string) => {
       setTouchedFields((prev) => new Set(prev).add(field));
+      if (field === "phoneNumber") {
+        const prefix = Object.values(flagsAndPhonePrefix).find((prefix) =>
+          value.startsWith(prefix.prefix)
+        );
+        if (prefix) {
+          setContact((prev) => ({
+            ...prev,
+            phonePrefix: prefix.code,
+            phoneNumber: value.replace(prefix.prefix, ""),
+          }));
+          return;
+        }
+      }
       setContact((prev) => ({
         ...prev,
         [field]: value,
@@ -127,7 +140,7 @@ export default function ContactPage() {
             name="given-name"
             autoComplete="given-name"
             placeholder="Karel"
-            defaultValue={contact.name}
+            value={contact.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             className={
               touchedFields.has("name") && errors.name ? "border-red-500" : ""
@@ -144,7 +157,7 @@ export default function ContactPage() {
             name="family-name"
             autoComplete="family-name"
             placeholder="Novák"
-            defaultValue={contact.surname}
+            value={contact.surname}
             onChange={(e) => handleInputChange("surname", e.target.value)}
             className={
               touchedFields.has("surname") && errors.surname
@@ -163,7 +176,7 @@ export default function ContactPage() {
             name="email"
             autoComplete="email"
             placeholder="karel.novak@gmail.com"
-            defaultValue={contact.email}
+            value={contact.email}
             onChange={(e) => handleInputChange("email", e.target.value)}
             className={
               touchedFields.has("email") && errors.email ? "border-red-500" : ""
@@ -177,7 +190,7 @@ export default function ContactPage() {
           <Label>Telefon</Label>
           <div className="flex gap-2">
             <Select
-              defaultValue={contact.phonePrefix}
+              value={contact.phonePrefix}
               onValueChange={(value) =>
                 handleInputChange(
                   "phonePrefix",
@@ -213,7 +226,7 @@ export default function ContactPage() {
               name="tel"
               autoComplete="tel"
               placeholder="123456789"
-              defaultValue={contact.phoneNumber}
+              value={contact.phoneNumber}
               onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
               className={`tracking-wide  ${
                 touchedFields.has("phoneNumber") && errors.phoneNumber
