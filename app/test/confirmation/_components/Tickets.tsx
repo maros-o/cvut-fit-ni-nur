@@ -48,7 +48,7 @@ export const Tickets = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-1/3 gap-1">
+      <div className="flex flex-col w-[50%] gap-1">
         {Object.entries(typesCount).map(([type, count]) => {
           if (count === 0) return null;
           const t = type as Ticket["type"];
