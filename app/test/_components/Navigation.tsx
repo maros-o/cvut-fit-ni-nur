@@ -40,7 +40,7 @@ const NavigationButton = ({
         disabled={disabled}
         asChild
       >
-        <Link href={href} shallow={true}>
+        <Link href={href} shallow={true} prefetch={true}>
           {icon}
           {text}
         </Link>

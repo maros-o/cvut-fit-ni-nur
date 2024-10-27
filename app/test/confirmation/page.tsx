@@ -32,7 +32,7 @@ export default function ConfirmationPage() {
           <Seats />
           <Tickets />
           <Button variant="outline" className="mt-2" asChild>
-            <Link href="./seats">
+            <Link href="./seats" shallow={true} prefetch={true}>
               Upravit <IoTicketOutline />
             </Link>
           </Button>
@@ -54,7 +54,7 @@ export default function ConfirmationPage() {
             </span>
           </div>
           <Button variant="outline" className="mt-2" asChild>
-            <Link href="./contact">
+            <Link href="./contact" shallow={true} prefetch={true}>
               Upravit <IoPersonSharp />
             </Link>
           </Button>

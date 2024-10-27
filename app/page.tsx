@@ -6,10 +6,14 @@ export default function HomePage() {
     <div className="flex justify-center items-center h-full">
       <nav className="flex flex-col gap-6 p-2 w-full max-w-xs">
         <Button asChild>
-          <Link href="/test/seats">Začít test</Link>
+          <Link href="/test/seats" shallow={true} prefetch={true}>
+            Začít test
+          </Link>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href="/settings">Nastavení</Link>
+          <Link href="/settings" shallow={true} prefetch={true}>
+            Nastavení
+          </Link>
         </Button>
       </nav>
     </div>

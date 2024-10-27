@@ -80,7 +80,9 @@ export default function SettingsPage() {
           Resetovat nastavení
         </Button>
         <Button asChild className="w-full">
-          <Link href="/">Zpět do menu</Link>
+          <Link href="/" shallow={true} prefetch={true}>
+            Zpět do menu
+          </Link>
         </Button>
       </div>
     </div>
