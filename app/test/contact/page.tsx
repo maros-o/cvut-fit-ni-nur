@@ -85,14 +85,14 @@ const useContactPage = () => {
           setContact((prev) => ({
             ...prev,
             phonePrefix: prefix.code,
-            phoneNumber: value.replace(prefix.prefix, ""),
+            phoneNumber: value.replace(prefix.prefix, "").trim(),
           }));
           return;
         }
       }
       setContact((prev) => ({
         ...prev,
-        [field]: value,
+        [field]: value.trim(),
       }));
     },
     []
