@@ -28,20 +28,6 @@ export default function SettingsPage() {
           <Input
             type="number"
             className="w-20"
-            value={maxSessionTime}
-            onChange={(e) =>
-              setSetting("maxSessionTime", Number(e.target.value))
-            }
-          />
-          <Label>
-            Maximální délka objednávky{" "}
-            <span className="text-black/60">(min)</span>
-          </Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Input
-            type="number"
-            className="w-20"
             value={numberOfReservedSeatsOnStart}
             onChange={(e) =>
               setSetting("numberOfReservedSeatsOnStart", Number(e.target.value))
