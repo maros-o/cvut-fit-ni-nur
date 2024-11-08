@@ -1,13 +1,7 @@
 "use client";
 
 import { useState, createContext, useEffect, useCallback } from "react";
-
-type Settings = {
-  showEraser: boolean;
-  maxSessionTime: number;
-  sessionTimeWarningLimit: number;
-  numberOfReservedSeatsOnStart: number;
-};
+import { z } from "zod";
 
 type ContextData = {
   setSetting: <K extends keyof Settings>(field: K, value: Settings[K]) => void;
@@ -15,6 +9,15 @@ type ContextData = {
 } & Settings;
 
 const SETTINGS_KEY = "settings";
+
+const SettingsSchema = z.object({
+  showEraser: z.boolean(),
+  maxSessionTime: z.number(),
+  sessionTimeWarningLimit: z.number(),
+  numberOfReservedSeatsOnStart: z.number(),
+});
+
+type Settings = z.infer<typeof SettingsSchema>;
 
 const defaultSettings: Settings = {
   showEraser: true,
@@ -30,7 +33,10 @@ export const SettingsProvider = ({
 }) => {
   const [settingsState, setSettingsState] = useState<Settings>(() => {
     try {
-      return JSON.parse(localStorage.getItem(SETTINGS_KEY) as string);
+      const storedSettings = JSON.parse(
+        localStorage.getItem(SETTINGS_KEY) as string
+      );
+      return SettingsSchema.parse(storedSettings);
     } catch (error) {
       return defaultSettings;
     }

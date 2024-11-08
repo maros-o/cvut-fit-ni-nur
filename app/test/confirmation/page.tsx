@@ -13,10 +13,12 @@ import { IoTicketOutline } from "react-icons/io5";
 import { IoPersonSharp } from "react-icons/io5";
 import { Seats } from "./_components/Seats";
 import { Tickets } from "./_components/Tickets";
+import { useRouter } from "next/navigation";
 
 export default function ConfirmationPage() {
   const { tickets, contact, agreeToTerms, setAgreeToTerms } =
     useContext(TestSessionContext);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col h-full">
@@ -66,7 +68,10 @@ export default function ConfirmationPage() {
             checked={agreeToTerms}
           />
           <div className="grid gap-1.5 leading-none">
-            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            <label
+              id="vop"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
               Souhlasím s <span className="underline font-semibold">VOP</span>
             </label>
           </div>
@@ -80,6 +85,7 @@ export default function ConfirmationPage() {
             "Nejprve souhlaste se všeobecnými obchodními podmínkami (VOP)"
           }
           disabled={!agreeToTerms}
+          onDisabledClick={() => router.replace("./confirmation#vop")}
           fullWidth
           hideIcon
           text="Zaplatit"
