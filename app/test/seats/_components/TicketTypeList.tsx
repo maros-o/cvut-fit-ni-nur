@@ -25,12 +25,12 @@ export const TicketTypeList = () => {
       />
       <TicketTypeItem
         type="child"
-        info="Do 12 let včetně. Dítě do 3 let nemusí platit vstupné, nemá ale nárok na vlastní sedačku."
+        info="Do 15 let včetně"
       />
       <TicketTypeItem type="senior" info="Nad 60 let včetně" />
       <TicketTypeItem
         type="ztp"
-        info="Doprovod (jedna osoba) pro ZTP/P má vstupenku zdarma. Pro slevu ZTP nebo ZTP/P musíte předložit platný průkaz."
+        info="S platným průkazem ZTP nebo ZTP/P"
       />
     </div>
   );

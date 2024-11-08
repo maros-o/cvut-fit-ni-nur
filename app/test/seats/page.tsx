@@ -18,6 +18,7 @@ import { TicketTypeList } from "./_components/TicketTypeList";
 
 export default function SeatsPage() {
   const { tickets } = useContext(TestSessionContext);
+  const { showEraser } = useContext(SettingsContext);
 
   if (typeof window === "undefined") return null;
 
@@ -38,8 +39,7 @@ export default function SeatsPage() {
             </p>
             <p>Tmavá sedadla jsou již obsazená, světlá sedadla jsou volná.</p>
             <p>
-              Mazat Vámi vybrané místa lze pomocí gumy nebo opětovným kliknutím
-              na vybrané sedadlo.
+              {showEraser ? "Mazat Vámi vybrané místa lze pomocí gumy nebo opětovným kliknutím na vybrané sedadlo." : "Mazat Vámi vybrané místa lze opětovným kliknutím na vybrané sedadlo." }
             </p>
           </PopoverContent>
         </Popover>
