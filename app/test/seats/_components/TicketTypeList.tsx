@@ -1,6 +1,7 @@
 import {
   ticketTypeToBgColor,
   ticketTypeToIcon,
+  ticketTypeToInfoText,
   ticketTypeToLabel,
   ticketTypeToPrice,
 } from "@/app/_constats/ticket";
@@ -19,19 +20,10 @@ export const TicketTypeList = () => {
   return (
     <div className="flex flex-col gap-0.5 pt-1.5">
       <TicketTypeItem type="adult" />
-      <TicketTypeItem
-        type="student"
-        info="S platným studentským průkazem do 26 let včetně"
-      />
-      <TicketTypeItem
-        type="child"
-        info="Do 15 let včetně"
-      />
-      <TicketTypeItem type="senior" info="Nad 60 let včetně" />
-      <TicketTypeItem
-        type="ztp"
-        info="S platným průkazem ZTP nebo ZTP/P"
-      />
+      <TicketTypeItem type="student" info={ticketTypeToInfoText["student"]} />
+      <TicketTypeItem type="child" info={ticketTypeToInfoText["child"]} />
+      <TicketTypeItem type="senior" info={ticketTypeToInfoText["senior"]} />
+      <TicketTypeItem type="ztp" info={ticketTypeToInfoText["ztp"]} />
     </div>
   );
 };

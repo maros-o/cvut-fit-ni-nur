@@ -1,4 +1,4 @@
-import { ticketTypeToBgColor } from "@/app/_constats/ticket";
+import { ticketTypeToBgColor, ticketTypeToIcon } from "@/app/_constats/ticket";
 import SettingsContext from "@/app/_contexts/SettingsContext";
 import TestSessionContext, {
   PaletteSelectType,
@@ -38,24 +38,34 @@ const PaletteItem = ({
   type,
   className,
 }: {
-  type: PaletteSelectType;
+  type: TicketType;
   className: string;
 }) => {
   const { selectedPaletteType, setSelectedPaletterType } =
     useContext(TestSessionContext);
+  const { showTube } = useContext(SettingsContext);
 
   return (
     <div
       className={`${className} ${
-        ticketTypeToBgColor[type as TicketType]
-      } absolute w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
+        ticketTypeToBgColor[type]
+      } absolute flex items-center justify-center w-10 h-10 rounded-full drop-shadow cursor-pointer transition-transform duration-200 ${
         selectedPaletteType === type
-          ? "outline outline-2 outline-gray-600 scale-105"
+          ? "outline outline-3 outline-gray-600 scale-110"
           : ""
       }`}
       onClick={() => setSelectedPaletterType(type)}
     >
-      <div className="absolute w-4 h-4 top-2 right-2 rounded-full bg-white/30"></div>
+      {showTube ? (
+        <div
+          className={`w-[24px] h-[24px] flex items-center justify-center`}
+          onClick={() => setSelectedPaletterType(type)}
+        >
+          {ticketTypeToIcon[type]}
+        </div>
+      ) : (
+        <div className="absolute w-4 h-4 top-2 right-2 rounded-full bg-white/30"></div>
+      )}
     </div>
   );
 };

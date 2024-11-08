@@ -6,6 +6,7 @@ import TestSessionContext from "@/app/_contexts/TestSessionContext";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -138,9 +139,9 @@ export default function OverviewPage() {
             <motion.p className="mt-2" variants={itemVariants}>
               Chybný e-mail?{" "}
             </motion.p>
-            <motion.p className="underline" variants={itemVariants}>
+            <Link className="underline" href="./help">
               Kontaktujte nás s č. transakce
-            </motion.p>
+            </Link>
           </div>
         </motion.article>
       </div>

@@ -46,3 +46,11 @@ export const ticketTypeToTextColor: Record<TicketType, string> = {
   child: "text-yellow-500",
   ztp: "text-purple-500",
 };
+
+export const ticketTypeToInfoText: Record<TicketType, string> = {
+  senior: "Nad 60 let včetně",
+  adult: "",
+  student: "S platným průkazem ISIC",
+  child: "Do 15 let včetně",
+  ztp: "S platným průkazem ZTP nebo ZTP/P",
+};

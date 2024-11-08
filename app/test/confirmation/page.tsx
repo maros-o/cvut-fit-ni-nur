@@ -72,7 +72,10 @@ export default function ConfirmationPage() {
               id="vop"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Souhlasím s <span className="underline font-semibold">VOP</span>
+              Souhlasím s{" "}
+              <Link href="./vop" className="underline font-semibold">
+                VOP
+              </Link>
             </label>
           </div>
         </div>

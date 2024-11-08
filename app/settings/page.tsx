@@ -10,9 +10,8 @@ import Link from "next/link";
 
 export default function SettingsPage() {
   const {
-    maxSessionTime,
-    sessionTimeWarningLimit,
     showEraser,
+    showTube,
     setSetting,
     resetSettings,
     numberOfReservedSeatsOnStart,
@@ -41,6 +40,13 @@ export default function SettingsPage() {
             checked={showEraser}
           />
           <Label>Zobrazovat gumu</Label>
+        </div>
+        <div className="flex items-center space-x-2 ps-9">
+          <Switch
+            onCheckedChange={() => setSetting("showTube", !showTube)}
+            checked={showTube}
+          />
+          <Label>Zobrazovat alternativní paletu (tempera)</Label>
         </div>
       </div>
       <div className="flex gap-6">

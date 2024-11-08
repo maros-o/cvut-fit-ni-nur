@@ -15,10 +15,12 @@ import { useContext } from "react";
 import TestSessionContext from "@/app/_contexts/TestSessionContext";
 import { Palette } from "./_components/Palette";
 import { TicketTypeList } from "./_components/TicketTypeList";
+import SettingsContext from "@/app/_contexts/SettingsContext";
+import { Temper } from "./_components/Temper";
 
 export default function SeatsPage() {
   const { tickets } = useContext(TestSessionContext);
-  const { showEraser } = useContext(SettingsContext);
+  const { showEraser, showTube } = useContext(SettingsContext);
 
   if (typeof window === "undefined") return null;
 
@@ -39,14 +41,16 @@ export default function SeatsPage() {
             </p>
             <p>Tmavá sedadla jsou již obsazená, světlá sedadla jsou volná.</p>
             <p>
-              {showEraser ? "Mazat Vámi vybrané místa lze pomocí gumy nebo opětovným kliknutím na vybrané sedadlo." : "Mazat Vámi vybrané místa lze opětovným kliknutím na vybrané sedadlo." }
+              Mazat Vámi vybraná místa lze {showEraser && " pomocí gumy nebo "}
+              opětovným kliknutím na vybrané sedadlo.
             </p>
           </PopoverContent>
         </Popover>
-        <div className="flex">
-          <TicketTypeList />
+        <div className="flex justify-center items-center">
+          {!showTube && <TicketTypeList />}
           <Palette />
         </div>
+        {showTube && <Temper />}
         <div className="pe-3 mt-2">
           <div
             className="w-full border rounded-md"

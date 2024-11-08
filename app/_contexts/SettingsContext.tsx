@@ -12,8 +12,7 @@ const SETTINGS_KEY = "settings";
 
 const SettingsSchema = z.object({
   showEraser: z.boolean(),
-  maxSessionTime: z.number(),
-  sessionTimeWarningLimit: z.number(),
+  showTube: z.boolean(),
   numberOfReservedSeatsOnStart: z.number(),
 });
 
@@ -21,8 +20,7 @@ type Settings = z.infer<typeof SettingsSchema>;
 
 const defaultSettings: Settings = {
   showEraser: true,
-  maxSessionTime: 20,
-  sessionTimeWarningLimit: 5,
+  showTube: false,
   numberOfReservedSeatsOnStart: 0,
 };
 
