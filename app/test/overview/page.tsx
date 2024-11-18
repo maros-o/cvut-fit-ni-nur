@@ -7,6 +7,7 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -57,7 +58,10 @@ const checkmarkVariants = {
 };
 
 export default function OverviewPage() {
-  const { movie, contact } = useContext(TestSessionContext);
+  const { movie, contact, seats, orderCode } = useContext(TestSessionContext);
+
+  const router = useRouter();
+  if (seats.length === 0) router.replace("/");
 
   return (
     <motion.div
@@ -129,7 +133,7 @@ export default function OverviewPage() {
             <motion.p className="font-bold" variants={itemVariants}>
               č. transakce{" "}
               <span className="bg-gray-100 px-2 py-1 rounded tracking-wide font-semibold">
-                {Math.floor(Math.random() * 100000)}
+                {orderCode}
               </span>
             </motion.p>
             <motion.p className="mt-2" variants={itemVariants}>

@@ -25,13 +25,17 @@ import {
   inputContainer,
 } from "@/app/_constats/contact";
 import { Emoji } from "./_components/Emoji";
+import { useRouter } from "next/navigation";
 
 const useContactPage = () => {
-  const { contact, setContact } = useContext(TestSessionContext);
+  const { contact, setContact, seats } = useContext(TestSessionContext);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [touchedFields, setTouchedFields] = useState<Set<keyof Contact>>(
     new Set()
   );
+
+  const router = useRouter();
+  if (seats.length === 0) router.replace("/");
 
   const validateForm = useCallback((data: Contact): boolean => {
     try {

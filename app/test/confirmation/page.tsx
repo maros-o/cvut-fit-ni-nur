@@ -16,9 +16,11 @@ import { Tickets } from "./_components/Tickets";
 import { useRouter } from "next/navigation";
 
 export default function ConfirmationPage() {
-  const { tickets, contact, agreeToTerms, setAgreeToTerms } =
+  const { tickets, contact, agreeToTerms, setAgreeToTerms, seats } =
     useContext(TestSessionContext);
+
   const router = useRouter();
+  if (seats.length === 0) router.replace("/");
 
   return (
     <div className="flex flex-col h-full">

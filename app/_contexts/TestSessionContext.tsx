@@ -19,6 +19,7 @@ type ContextData = {
   tickets: Ticket[];
   selectedPaletteType: PaletteSelectType;
   seats: SelectSeat[][];
+  orderCode: number;
   updateSeat: (row: number, col: number, type: SeatType) => void;
   setSelectedPaletterType: React.Dispatch<
     React.SetStateAction<PaletteSelectType>
@@ -84,6 +85,7 @@ export const TestSessionProvider = ({
   const [selectedPaletteType, setSelectedPaletterType] =
     useState<PaletteSelectType>("adult");
   const [seats, setSeats] = useState<SelectSeat[][]>([]);
+  const [orderCode] = useState(Math.floor(Math.random() * 100000));
 
   const { numberOfReservedSeatsOnStart } = useContext(SettingsContext);
 
@@ -139,6 +141,7 @@ export const TestSessionProvider = ({
         tickets,
         selectedPaletteType,
         seats,
+        orderCode,
         updateSeat,
         setSelectedPaletterType,
         setAgreeToTerms,
