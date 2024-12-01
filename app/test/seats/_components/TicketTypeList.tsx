@@ -41,15 +41,15 @@ const TicketTypeItem = ({
   return (
     <Popover>
       <div
-        className={`flex items-center gap-2 px-2 py-1 rounded-sm pe-[20px] text-left ${
+        className={`flex items-center gap-2 px-2 py-1 rounded-sm pe-[20px] text-left cursor-pointer ${
           selectedPaletteType === type
             ? " outline outline-gray-500 outline-2"
             : ""
         }`}
+        onClick={() => setSelectedPaletterType(type)}
       >
         <div
-          className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm cursor-pointer flex items-center justify-center`}
-          onClick={() => setSelectedPaletterType(type)}
+          className={`${ticketTypeToBgColor[type]} w-[30px] h-[30px] rounded-sm drop-shadow-sm flex items-center justify-center`}
         >
           {ticketTypeToIcon[type]}
         </div>
@@ -57,7 +57,10 @@ const TicketTypeItem = ({
           <span className="text-sm font-[500] relative">
             {ticketTypeToLabel[type]}
             {info && (
-              <PopoverTrigger className="absolute right-[-20px] top-0 text-black/60 z-10">
+              <PopoverTrigger
+                className="absolute right-[-20px] top-0 text-black/60 z-10"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <IoMdInformationCircleOutline size={18} />
               </PopoverTrigger>
             )}

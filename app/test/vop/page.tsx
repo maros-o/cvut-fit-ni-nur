@@ -1,6 +1,6 @@
 "use client";
 
-import { NextButton } from "../_components/Navigation";
+import { BackButton } from "../_components/Navigation";
 
 export default function VopPage() {
   return (
@@ -212,7 +212,7 @@ export default function VopPage() {
         </section>{" "}
       </article>
       <div className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
-        <NextButton href="./confirmation#vop" />
+        <BackButton href="./confirmation#vop" />
       </div>
     </div>
   );

@@ -1,8 +1,12 @@
 "use client";
 
-import { NextButton } from "../_components/Navigation";
+import { useContext } from "react";
+import { BackButton } from "../_components/Navigation";
+import TestSessionContext from "@/app/_contexts/TestSessionContext";
 
 export default function VopPage() {
+  const { orderCode } = useContext(TestSessionContext);
+
   return (
     <div className="flex flex-col h-full">
       <article className="flex flex-col h-full items-center p-6 max-w-lg mx-auto bg-white shadow-md rounded-lg">
@@ -13,6 +17,11 @@ export default function VopPage() {
           Pokud potřebujete pomoc s vaší objednávkou nebo máte jakékoli dotazy,
           kontaktujte nás.
         </p>
+
+        <p className="text-lg font-medium text-gray-700 mb-2">
+          Číslo transakce
+        </p>
+        <p className="text-blue-600 text-lg font-semibold mb-4">{orderCode}</p>
 
         <p className="text-lg font-medium text-gray-700 mb-2">
           Telefonická podpora
@@ -39,7 +48,7 @@ export default function VopPage() {
       </article>
 
       <div className="flex justify-center items-center gap-4 p-2 w-full border-t sticky bottom-0 bg-white">
-        <NextButton href="./overview" />
+        <BackButton href="./overview" />
       </div>
     </div>
   );
